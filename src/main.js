@@ -14,6 +14,8 @@ import router from './router'
 // element-ui
 import ELEMENT from "element-ui";
 import 'element-ui/lib/theme-chalk/index.css'
+import "./style/element-variables.scss";
+
 Vue.use(ELEMENT);
 
 // 重置css样式

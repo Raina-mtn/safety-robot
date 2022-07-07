@@ -27,40 +27,40 @@ export const asyncRoutes = [
     path: '/monitor',
     name: 'Monitor',
     code: 'Monitor',
-    component: () => import('@/views/default/index.vue'),
-    meta: { title: '实时监控', icon: 'icon-shouye-shouye' }
+    component: () => import('@/views/person/start/index.vue'),
+    meta: { title: '启动流程', icon: 'icon-shouye-shouye' }
   },
   {
     path: '/task',
     code: 'Task',
     component: () => import('@/components/PageLayout.vue'),
-    meta: { title: '任务中心', icon: 'icon-shouye-shouye' },
+    meta: { title: '个人工作台', icon: 'icon-shouye-shouye' },
     children: [
       {
         code: 'Manager',
         path: '/manager',
-        component: () => import('@/views/default/index.vue'),
-        meta: { title: '任务管理' }
+        component: () => import('@/views/basicData/doubleDefense/index'),
+        meta: { title: '双重预防' }
       },
       {
         code: 'Audit',
         name: 'Audit',
         path: '/audit',
-        component: () => import('@/views/default/index.vue'),
-        meta: { title: '结果审核' },
-        props(route) {
-          const { id = '' } = route.params;
-          return {
-            id: id === ':id' ? ' ' : id
-          };
-        }
+        component: () => import('@/views/person/start/maintenPlan.vue'),
+        meta: { title: '编制检修计划' },
+        // props(route) {
+        //   const { id = '' } = route.params;
+        //   return {
+        //     id: id === ':id' ? ' ' : id
+        //   };
+        // }
       },
       {
         code: 'Import',
         path: '/import',
-        component: () => import('@/views/default/index.vue'),
+        component: () => import('@/views/person/start/maintenPlan.vue'),
         hidden: true,
-        meta: { activeMenu: '/manager' }
+        meta: { title: '编制检修计划'}
       }
     ]
   },
@@ -73,52 +73,52 @@ export const asyncRoutes = [
       {
         code: 'Stat',
         path: '/stat',
-        component: () => import('@/views/default/index.vue'),
-        meta: { title: '汇总统计' }
+        component: () => import('@/views/person/start/incidentReporting.vue'),
+        meta: { title: '事件提报' }
       },
       {
         code: 'History',
         path: '/history',
-        component: () => import('@/views/default/index.vue'),
-        meta: { title: '历史回看' }
+        component: () => import('@/views/person/start/areaRisk.vue'),
+        meta: { title: '变更风险区域清单' }
       }
     ]
   },
   {
     path: '/indicator',
     code: 'Indicator',
-    component: () => import('@/views/default/index.vue'),
-    meta: { title: '指标管理', icon: 'icon-shouye-shouye' }
+    component: () => import('@/views/person/start/operationRisk.vue'),
+    meta: { title: '变更风险作业清单', icon: 'icon-shouye-shouye' }
   },
   {
     path: '/permission',
     code: 'Permission',
     component: () => import('@/components/PageLayout.vue'),
-    meta: { title: '权限管理', icon: 'icon-shouye-shouye' },
+    meta: { title: '待办事项', icon: 'icon-shouye-shouye' },
     children: [
       {
         code: 'Role',
         path: '/role',
         component: () => import('@/views/default/index.vue'),
-        meta: { title: '角色管理' }
+        meta: { title: '非故障修工单' }
       },
       {
         code: 'User',
         path: '/user',
-        component: () => import('@/views/default/index.vue'),
-        meta: { title: '用户管理' }
+        component: () => import('@/views/person/start/faultReport.vue'),
+        meta: { title: '生成故障报告' }
       },
       {
         code: 'Org',
         path: '/org',
-        component: () => import('@/views/default/index.vue'),
-        meta: { title: '组织管理' }
+        component: () => import('@/views/person/pending/index.vue'),
+        meta: { title: '待办事项' }
       },
       {
         code: 'Log',
         path: '/log',
-        component: () => import('@/views/default/index.vue'),
-        meta: { title: '日志管理' }
+        component: () => import('@/views/form/riskForm.vue'),
+        meta: { title: '故障工单' }
       }
     ]
   },
@@ -131,14 +131,14 @@ export const asyncRoutes = [
       {
         code: 'Model',
         path: '/model',
-        component: () => import('@/views/default/index.vue'),
-        meta: { title: '型号管理' }
+        component: () => import('@/views/mainten/maintenPlan.vue'),
+        meta: { title: '检修计划' }
       },
       {
         code: 'Robot',
         path: '/robot',
-        component: () => import('@/views/default/index.vue'),
-        meta: { title: '机器人管理' }
+        component: () => import('@/views/safety/yearPlan.vue'),
+        meta: { title: '年度检查计划' }
       }
     ]
   }

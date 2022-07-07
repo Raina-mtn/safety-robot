@@ -24,5 +24,7 @@ export default {
   width: 100vw;
   height: calc( 100vh - 50px ) !important;
   overflow: hidden;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
 }
+
 </style>
