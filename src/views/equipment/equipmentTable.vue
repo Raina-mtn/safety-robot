@@ -24,7 +24,8 @@
     :size="'mini'" 
     :header-cell-style="{background:'#eee'}"
     @pageChange="getList" 
-  />
+  >
+    </WTable>
   </div>
 </template>
 
@@ -39,9 +40,13 @@ export default {
   data() {
     return {
       formData:{},
-      tableData:[],
-      total:0
-      
+      tableData:[
+        {
+          realName:'1111'
+        }
+      ],
+      total:1,
+      date:'',
     }
   },
   props:{

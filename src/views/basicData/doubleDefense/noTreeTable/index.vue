@@ -87,6 +87,7 @@ export default {
     },
 
     tableColums(){
+      this.isShow = false;
       switch (this.activeName) {
         case 'type':
           return typeColums()
@@ -111,10 +112,10 @@ export default {
         case 'c':
           return cColums()
         case 'station':
-          this.isShow = false
+          this.isShow = false;
           return stationColums()
         case 'department':
-          this.isShow = false
+          this.isShow = false;
           return departmentColums()
       }
     }

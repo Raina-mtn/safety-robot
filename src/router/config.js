@@ -73,8 +73,8 @@ export const asyncRoutes = [
       {
         code: 'Stat',
         path: '/stat',
-        component: () => import('@/views/person/start/incidentReporting.vue'),
-        meta: { title: '事件提报' }
+        component: () => import('@/views/equipment/index.vue'),
+        meta: { title: '特种设备' }
       },
       {
         code: 'History',

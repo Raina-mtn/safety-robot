@@ -119,13 +119,14 @@ export default {
         case 'area':
           return areaColums()
         case 'responsible':
-          this.isShow = false
+          this.isShow = false;
         case 'project':
           return projectColums()
         case 'supervise':
-          this.addShow = false
+          this.addShow = false;
           return superviseColums()
       }
+      this.addShow = true;
     }
   },
   methods: {

@@ -28,6 +28,9 @@ export const allFormColums =(that)=> {
 export const allColums = (that)=>{
   return [
     {
+      label:'特种设备',
+    },
+    {
       label: '序号',
       prop: 'realName',
       fixed:true
@@ -92,7 +95,43 @@ export const allColums = (that)=>{
     {
       label: '投入使用日期',
       prop: 'realName',
-    }
+    },
+    {
+      label: '设备状态',
+      prop: 'realName',
+    },
+    {
+      label: '名义速度（额定速度）m/s',
+      prop: 'realName',
+    },
+    {
+      label: '提升高度m',
+      prop: 'realName',
+    },
+    {
+      label: '额定起重量t',
+      prop: 'realName',
+    },
+    {
+      label: '车牌号',
+      prop: 'realName',
+    },
+    {
+      label: '材质',
+      prop: 'realName',
+    },
+    {
+      label: '设计压力Mpa',
+      prop: 'realName',
+    },
+    {
+      label: '设计温度℃(壳程/管程）',
+      prop: 'realName',
+    },
+    {
+      label: '介质(壳程/管程）',
+      prop: 'realName',
+    },
   ]
 }
 
@@ -103,7 +142,7 @@ export const moreFormColums =(that)=> {
       label: '设备种类',
       prop: 'userNameLike',
       el: 'select',
-      placeholder: '请选择入',
+      placeholder: '请选择',
       clearable: true,
       span: 4
     }, 
@@ -144,7 +183,7 @@ export const moreFormColums =(that)=> {
       span: 4
     },
     {
-      label: '内部编号',
+      label: '设备使用地点',
       prop: 'roleId',
       el: 'input',
       type:'textarea',
@@ -153,7 +192,7 @@ export const moreFormColums =(that)=> {
       span: 4
     },
     {
-      label: '安全责任人',
+      label: '设备使用地点',
       prop: 'roleId',
       el: 'input',
       type:'textarea',

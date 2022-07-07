@@ -9,6 +9,7 @@
     >
     <div slot="btns">
       <el-button type="primary">查询</el-button>
+      <el-button type="primary" @click="$refs.addDialog.openDialog()">新增</el-button>
     </div>
     </WForm>
     <WTable
@@ -21,16 +22,27 @@
     :header-cell-style="{background:'#eee'}"
     @pageChange="getList" 
   />
+  <AddDialog ref="addDialog" :activeName="activeName"></AddDialog>
   </div>
 </template>
 
 <script>
 import { WForm,WTable } from '@common-ui/w-form';
-import {riskFormColums,riskColums,otherColums,eventColums,extensionColums,operationColums,areaColums} from './config'
+import AddDialog from './addDialog.vue'
+import {
+  basicFormColums,
+  correspondenceFormColums,
+  personnelFormColums,
+  basicColums,
+  correspondenceColums,
+  personnelColums
+  } from './config'
 export default {
   components:{
     WForm,
     WTable,
+    
+    AddDialog
   },
   data() {
     return {
@@ -48,23 +60,24 @@ export default {
   },
   computed:{
     columns(){
-      return riskFormColums()
+      switch (this.activeName) {
+        case 'basic':
+          return   basicFormColums()
+        case 'correspondence':
+          return correspondenceFormColums()
+        case 'personnel':
+          return personnelFormColums()
+      }
     },
 
     tableColums(){
       switch (this.activeName) {
-        case 'risk':
-          return riskColums()
-        case 'other':
-          return otherColums()
-        case 'event':
-          return eventColums()
-        case 'extension':
-          return extensionColums()
-        case 'operation':
-          return operationColums()
-        case 'area':
-          return areaColums()
+        case 'basic':
+          return basicColums()
+        case 'correspondence':
+          return correspondenceColums()
+        case 'personnel':
+          return personnelColums()
       }
     }
   }
