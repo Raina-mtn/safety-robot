@@ -8,3 +8,4 @@
  * @FilePath: /explosive-robot/src/api/interface/index.js
  */
 export * from './modules/user'
+export * from './modules/person'

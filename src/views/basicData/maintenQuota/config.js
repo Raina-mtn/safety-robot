@@ -21,29 +21,29 @@ export const maintenFormColums =(that)=> {
 export const maintenColums = (that)=>{
   return [
     {
-      label: '序号',
-      prop: 'realName',
-    }, 
-    {
       label: '作业编号',
-      prop: 'realName',
+      prop: 'id',
     }, 
     {
       label: '作业项目',
-      prop: 'realName',
+      prop: 'project',
     }, 
     {
       label: '所属专业',
-      prop: 'realName',
+      prop: 'major',
     }, 
     {
       label: '状态',
-      prop: 'realName',
+      prop: 'status',
     },
     {
       label: '操作',
       render(h,{row}) {
-        <i class="el-icon-delete"></i>
+        return[
+          <el-link type="primary" underline={false} onClick={() => {}}><i class="el-icon-edit"></i></el-link>,
+          <el-divider direction="vertical"></el-divider>,
+          <el-link type="primary" underline={false} onClick={() => {}}><i class="el-icon-delete"></i></el-link>,
+        ]
       },
     },
   ]
@@ -80,9 +80,5 @@ export const dialogFormColums =(that)=> {
       prop:'radio',
       span:16
     },
-    {
-      prop:'btns',
-      span:16
-    }
   ]
 }

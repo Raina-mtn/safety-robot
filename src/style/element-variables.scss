@@ -4,10 +4,6 @@ $--color-primary: #E99A13;
 $--font-path: '~element-ui/lib/theme-chalk/fonts';
 
 @import "~element-ui/packages/theme-chalk/src/index";
-
-.el-form-item__label{
-  width: 100px !important;
-}
-.el-textarea,.el-select,.el-input{
-  width: 90% !important;
+.custom{
+  max-height: 200vh !important;
 }

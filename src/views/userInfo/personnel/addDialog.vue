@@ -2,57 +2,49 @@
   <el-dialog 
     :before-close="closeDialog"
     :visible.sync="isShow"
-    title="新增" 
+    :title="title" 
     center
   >
     <WForm
-      label-width="90px"
+      label-width="110px"
       :form-data="formData"
-      :columns="columns"
+      :columns="addFormColums"
       size="mini"
       >
-      <div slot="btns">
-        <el-button type="primary" @click="closeDialog">取消</el-button>
-        <el-button type="primary">确定</el-button>
-      </div>
     </WForm>
+    <div slot="footer" class="btn-grops">
+      <el-button icon="el-icon-circle-close" @click="closeDialog">
+        取 消
+      </el-button>
+      <el-button icon="el-icon-circle-check" type="primary" @click="submit">
+        确 定
+      </el-button>
+    </div>
   </el-dialog>
 </template>
 <script>
-import {basics,correspondence,personnel} from './config'
+// import {basics,correspondence,personnel} from './config'
+import {addFormColums} from './config'
 import { WForm } from '@common-ui/w-form';
 export default {
   name:'ExtensionDialog',
   components:{
     WForm
   },
-  props:{
-    activeName:{
-      type:String,
-      default:''
-    }
-  },
   data() {
     return {
       isShow:false,
-      formData:{}
+      formData:{},
+      title:'新增',
+      type:'',
+      addFormColums:addFormColums()
     };
-  },
-  computed:{
-    columns(){
-      switch (this.activeName) {
-        case 'basic':
-          return basics()
-        case 'correspondence':
-          return correspondence()
-        case 'personnel':
-          return personnel()
-      }
-    }
   },
   methods: {
     //打开
-    openDialog() {
+    openDialog(type) {
+      this.type = type;
+      this.title = this.type === 'add' ? '新增' : '编辑'
       this.isShow = true;
     },
 
@@ -65,8 +57,5 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.upload{
-  margin: 10px auto;
-}
 
 </style>

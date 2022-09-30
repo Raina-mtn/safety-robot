@@ -16,51 +16,44 @@
     <div class="right">
       <span>当前选择：{{current}}</span>
       <WForm
-      v-if="isShow"
-      label-width="90px"
       :form-data="formData"
-      :columns="noInputFormColums"
+      :columns="formColums"
       size="mini"
       @inputEnter="getList"
     >
-    <div slot="btns">
+    <div slot="btns1">
       <el-button type="primary" v-if="addShow">导入</el-button>
       <el-button type="primary" v-if="addShow">导出</el-button>
-      <el-button type="primary">新增</el-button>
+      <el-button type="primary" @click="$refs.addDialog.openDialog(activeName,'add')">新增</el-button>
       <el-button type="primary" v-if="addShow">删除</el-button>
-      <el-button type="primary" v-if="addShow">修改责任人</el-button>
+      <!-- <el-button type="primary" v-if="addShow">修改责任人</el-button> -->
     </div>
-    </WForm>
-    <WForm
-    v-else
-      label-width="90px"
-      :form-data="formData"
-      :columns="inputFormColums"
-      size="mini"
-      selection
-      :selectable="()=>true"
-      @inputEnter="getList"
-    >
-    <div slot="btns">
+    <div slot="btns2">
       <el-button type="primary">提交</el-button>
     </div>
     </WForm>
     <WTable
-    ref="mtable" 
-    :table-data="tableData" 
-    :columns="tableColums" 
-    :page="formData" 
-    :total="total" 
-    :size="'mini'" 
-    :header-cell-style="{background:'#eee'}"
-    @pageChange="getList" 
-  />
+      ref="mtable" 
+      v-if="tableShow"
+      :table-data="tableData" 
+      :columns="tableColums" 
+      :page="formData" 
+      :total="total" 
+      :size="'mini'" 
+      :selection="true"
+      :selectable="()=>true"
+      :header-cell-style="{background:'#eee'}"
+      @pageChange="getList" 
+    />
     </div>
+    <AddDialog ref="addDialog"></AddDialog>
   </div>
 </template>
 
 <script>
 import { WForm,WTable } from '@common-ui/w-form';
+import AddDialog from '../addDialog.vue'
+import {areaDoubleTreeData,areaDoubleData} from '@/utils/data'
 import {
   noInputFormColums,
   inputFormColums,
@@ -72,31 +65,22 @@ export default {
   components:{
     WForm,
     WTable,
+    AddDialog
   },
   data() {
     return {
       formData:{},
-      tableData:[],
-      total:0,
-      isShow:true,
+      tableData:areaDoubleData,
+      total:1,
       addShow:true,
       treeProps:{
         label:'name',
         children: 'subList'
       },
-      orgTree:[
-        {
-          name: '一级 1',
-          subList: [{
-            name: '二级 1-1',
-            subList: [{
-              name: '三级 1-1-1'
-            }]
-          }]
-        }
-      ],
+      orgTree:areaDoubleTreeData,
       currentNode:[],
-      current:''
+      current:'',
+      tableShow:true
     }
   },
   props:{
@@ -106,25 +90,27 @@ export default {
     }
   },
   computed:{
-    noInputFormColums(){
-      return noInputFormColums()
-    },
-
-    inputFormColums(){
-      return inputFormColums()
+    formColums(){
+      switch (this.activeName) {
+        case 'responsible':
+          return inputFormColums()
+        default:
+          return noInputFormColums()
+      }
     },
 
     tableColums(){
+      this.tableShow = true;
       switch (this.activeName) {
         case 'area':
-          return areaColums()
+          return areaColums(this)
         case 'responsible':
-          this.isShow = false;
+          this.tableShow = false;
         case 'project':
-          return projectColums()
+          return projectColums(this)
         case 'supervise':
           this.addShow = false;
-          return superviseColums()
+          return superviseColums(this)
       }
       this.addShow = true;
     }
@@ -137,9 +123,8 @@ export default {
 
     getCurrentNode(item,e){
       this.currentNode.unshift(e.data.name);
-      if(e.parent.data.name === undefined){
-        return this.currentNode
-      }else{
+      console.log('this.currentNode :>> ', this.currentNode);
+      if(e.parent.data.name !== undefined){
         this.getCurrentNode(e.parent,e.parent)
       }
       this.getCurrent()

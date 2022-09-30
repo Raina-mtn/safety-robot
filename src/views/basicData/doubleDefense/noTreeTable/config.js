@@ -2,12 +2,12 @@
 export const noInputFormColums =(that)=> {
   return [
     {
-      prop:'btns',
+      prop:'btns1',
       span:4
     }
   ]
 }
-export const inputFormColums =(that)=> {
+export const inputFormColums1 =(that)=> {
   return [
     {
       label: '区域名称',
@@ -26,7 +26,23 @@ export const inputFormColums =(that)=> {
       span: 8
     },
     {
-      prop:'btns',
+      prop:'btns2',
+      span:4
+    }
+  ]
+}
+export const inputFormColums2 =(that)=> {
+  return [
+    {
+      label: '责任部门',
+      prop: 'userNameLike',
+      el: 'select',
+      placeholder: '请选择',
+      clearable: true,
+      span: 8
+    },
+    {
+      prop:'btns2',
       span:4
     }
   ]
@@ -36,27 +52,25 @@ export const inputFormColums =(that)=> {
 export const typeColums = (that)=>{
   return [
     {
-      label: '序号',
-      prop: 'realName',
-    }, 
-    {
       label: '代码',
-      prop: 'realName',
+      prop: 'id',
     }, 
     {
       label: '名称',
-      prop: 'realName',
+      prop: 'name',
     }, 
     {
       label: '状态',
-      prop: 'realName',
+      prop: 'status',
     }, 
     {
       label: '操作',
       render(h,{row}) {
-        return(
-          <i class="el-icon-edit"></i>
-        )
+        return[
+          <el-link type="primary" underline={false} onClick={() => {that.$refs.addDialog.openDialog(that.activeName,'edit')}}><i class="el-icon-edit"></i></el-link>,
+          <el-divider direction="vertical"></el-divider>,
+          <el-link type="primary" underline={false} onClick={() => {}}><i class="el-icon-delete"></i></el-link>,
+        ]
       },
     }
   ]
@@ -66,35 +80,33 @@ export const typeColums = (that)=>{
 export const gradeColums = (that)=>{
   return [
     {
-      label: '序号',
-      prop: 'realName',
-    }, 
-    {
       label: '代码',
-      prop: 'realName',
+      prop: 'id',
     }, 
     {
       label: '名称',
-      prop: 'realName',
+      prop: 'name',
     }, 
     {
       label: '分数区间上',
-      prop: 'realName',
+      prop: 'gradeUp',
     }, 
     {
       label: '分数区间下',
-      prop: 'realName',
+      prop: 'gradeDown',
     }, 
     {
       label: '状态',
-      prop: 'realName',
+      prop: 'status',
     }, 
     {
       label: '操作',
       render(h,{row}) {
-        return(
-          <i class="el-icon-edit"></i>
-        )
+        return[
+          <el-link type="primary" underline={false} onClick={() => {that.$refs.addDialog.openDialog(that.activeName,'edit')}}><i class="el-icon-edit"></i></el-link>,
+          <el-divider direction="vertical"></el-divider>,
+          <el-link type="primary" underline={false} onClick={() => {}}><i class="el-icon-delete"></i></el-link>,
+        ]
       },
     }
   ]
@@ -104,31 +116,30 @@ export const gradeColums = (that)=>{
 export const frequencyColums = (that)=>{
   return [
     {
-      label: '序号',
-      prop: 'realName',
-    }, 
-    {
       label: '风险等级',
-      prop: 'realName',
+      prop: 'level',
     }, 
     {
       label: '频次',
-      prop: 'realName',
+      prop: 'frequency',
+      width:800
     }, 
     {
       label: '单位',
-      prop: 'realName',
+      prop: 'unit',
     }, 
     {
       label: '状态',
-      prop: 'realName',
+      prop: 'status',
     }, 
     {
       label: '操作',
       render(h,{row}) {
-        return(
-          <i class="el-icon-edit"></i>
-        )
+        return[
+          <el-link type="primary" underline={false} onClick={() => {that.$refs.addDialog.openDialog(that.activeName,'edit')}}><i class="el-icon-edit"></i></el-link>,
+          <el-divider direction="vertical"></el-divider>,
+          <el-link type="primary" underline={false} onClick={() => {}}><i class="el-icon-delete"></i></el-link>,
+        ]
       },
     }
   ]
@@ -138,27 +149,25 @@ export const frequencyColums = (that)=>{
 export const eventColums = (that)=>{
   return [
     {
-      label: '序号',
-      prop: 'realName',
-    }, 
-    {
       label: '编码',
-      prop: 'realName',
+      prop: 'id',
     }, 
     {
       label: '名称',
-      prop: 'realName',
+      prop: 'name',
     }, 
     {
       label: '状态',
-      prop: 'realName',
+      prop: 'status',
     }, 
     {
       label: '操作',
       render(h,{row}) {
-        return(
-          <i class="el-icon-edit"></i>
-        )
+        return[
+          <el-link type="primary" underline={false} onClick={() => {that.$refs.addDialog.openDialog(that.activeName,'edit')}}><i class="el-icon-edit"></i></el-link>,
+          <el-divider direction="vertical"></el-divider>,
+          <el-link type="primary" underline={false} onClick={() => {}}><i class="el-icon-delete"></i></el-link>,
+        ]
       },
     }
   ]
@@ -168,31 +177,30 @@ export const eventColums = (that)=>{
 export const levelColums = (that)=>{
   return [
     {
-      label: '序号',
-      prop: 'realName',
-    }, 
-    {
       label: '编码',
-      prop: 'realName',
+      prop: 'id',
     }, 
     {
       label: '名称',
-      prop: 'realName',
+      prop: 'name',
     }, 
     {
       label: '备注',
-      prop: 'realName',
+      prop: 'remark',
+      width:800
     }, 
     {
       label: '状态',
-      prop: 'realName',
+      prop: 'status',
     }, 
     {
       label: '操作',
       render(h,{row}) {
-        return(
-          <i class="el-icon-edit"></i>
-        )
+        return[
+          <el-link type="primary" underline={false} onClick={() => {that.$refs.addDialog.openDialog(that.activeName,'edit')}}><i class="el-icon-edit"></i></el-link>,
+          <el-divider direction="vertical"></el-divider>,
+          <el-link type="primary" underline={false} onClick={() => {}}><i class="el-icon-delete"></i></el-link>,
+        ]
       },
     }
   ]
@@ -202,23 +210,21 @@ export const levelColums = (that)=>{
 export const staffColums = (that)=>{
   return [
     {
-      label: '序号',
-      prop: 'realName',
-    }, 
-    {
       label: '隐患等级',
-      prop: 'realName',
+      prop: 'level',
     }, 
     {
       label: '岗位',
-      prop: 'realName',
+      prop: 'department',
     }, 
     {
       label: '操作',
       render(h,{row}) {
-        return(
-          <i class="el-icon-edit"></i>
-        )
+        return[
+          <el-link type="primary" underline={false} onClick={() => {}}><i class="el-icon-delete"></i></el-link>,
+          <el-divider direction="vertical"></el-divider>,
+          <el-link type="primary" underline={false} onClick={() => {}}><i class="el-icon-delete"></i></el-link>,
+        ]
       },
     }
   ]
@@ -228,27 +234,25 @@ export const staffColums = (that)=>{
 export const hazardColums = (that)=>{
   return [
     {
-      label: '序号',
-      prop: 'realName',
-    }, 
-    {
       label: '编码',
-      prop: 'realName',
+      prop: 'id',
     }, 
     {
       label: '名称',
-      prop: 'realName',
+      prop: 'name',
     }, 
     {
       label: '状态',
-      prop: 'realName',
+      prop: 'status',
     }, 
     {
       label: '操作',
       render(h,{row}) {
-        return(
-          <i class="el-icon-edit"></i>
-        )
+        return[
+          <el-link type="primary" underline={false} onClick={() => {that.$refs.addDialog.openDialog(that.activeName,'edit')}}><i class="el-icon-edit"></i></el-link>,
+          <el-divider direction="vertical"></el-divider>,
+          <el-link type="primary" underline={false} onClick={() => {}}><i class="el-icon-delete"></i></el-link>,
+        ]
       },
     }
   ]
@@ -258,27 +262,25 @@ export const hazardColums = (that)=>{
 export const checkColums = (that)=>{
   return [
     {
-      label: '序号',
-      prop: 'realName',
-    }, 
-    {
       label: '编码',
-      prop: 'realName',
+      prop: 'id',
     }, 
     {
       label: '名称',
-      prop: 'realName',
+      prop: 'name',
     }, 
     {
       label: '状态',
-      prop: 'realName',
+      prop: 'status',
     }, 
     {
       label: '操作',
       render(h,{row}) {
-        return(
-          <i class="el-icon-edit"></i>
-        )
+        return[
+          <el-link type="primary" underline={false} onClick={() => {that.$refs.addDialog.openDialog(that.activeName,'edit')}}><i class="el-icon-edit"></i></el-link>,
+          <el-divider direction="vertical"></el-divider>,
+          <el-link type="primary" underline={false} onClick={() => {}}><i class="el-icon-delete"></i></el-link>,
+        ]
       },
     }
   ]
@@ -288,31 +290,29 @@ export const checkColums = (that)=>{
 export const lColums = (that)=>{
   return [
     {
-      label: '序号',
-      prop: 'realName',
-    }, 
-    {
       label: '编码',
-      prop: 'realName',
+      prop: 'id',
     }, 
     {
       label: '名称',
-      prop: 'realName',
+      prop: 'name',
     }, 
     {
       label: '分数',
-      prop: 'realName',
+      prop: 'grade',
     }, 
     {
       label: '状态',
-      prop: 'realName',
+      prop: 'status',
     }, 
     {
       label: '操作',
       render(h,{row}) {
-        return(
-          <i class="el-icon-edit"></i>
-        )
+        return[
+          <el-link type="primary" underline={false} onClick={() => {that.$refs.addDialog.openDialog(that.activeName,'edit')}}><i class="el-icon-edit"></i></el-link>,
+          <el-divider direction="vertical"></el-divider>,
+          <el-link type="primary" underline={false} onClick={() => {}}><i class="el-icon-delete"></i></el-link>,
+        ]
       },
     }
   ]
@@ -322,31 +322,29 @@ export const lColums = (that)=>{
 export const eColums = (that)=>{
   return [
     {
-      label: '序号',
-      prop: 'realName',
-    }, 
-    {
       label: '编码',
-      prop: 'realName',
+      prop: 'id',
     }, 
     {
       label: '名称',
-      prop: 'realName',
+      prop: 'name',
     }, 
     {
       label: '分数',
-      prop: 'realName',
+      prop: 'grade',
     }, 
     {
       label: '状态',
-      prop: 'realName',
+      prop: 'status',
     }, 
     {
       label: '操作',
       render(h,{row}) {
-        return(
-          <i class="el-icon-edit"></i>
-        )
+        return[
+          <el-link type="primary" underline={false} onClick={() => {that.$refs.addDialog.openDialog(that.activeName,'edit')}}><i class="el-icon-edit"></i></el-link>,
+          <el-divider direction="vertical"></el-divider>,
+          <el-link type="primary" underline={false} onClick={() => {}}><i class="el-icon-delete"></i></el-link>,
+        ]
       },
     }
   ]
@@ -378,9 +376,11 @@ export const cColums = (that)=>{
     {
       label: '操作',
       render(h,{row}) {
-        return(
-          <i class="el-icon-edit"></i>
-        )
+        return[
+          <el-link type="primary" underline={false} onClick={() => {that.$refs.addDialog.openDialog(that.activeName,'edit')}}><i class="el-icon-edit"></i></el-link>,
+          <el-divider direction="vertical"></el-divider>,
+          <el-link type="primary" underline={false} onClick={() => {}}><i class="el-icon-delete"></i></el-link>,
+        ]
       },
     }
   ]
@@ -404,9 +404,11 @@ export const stationColums = (that)=>{
     {
       label: '操作',
       render(h,{row}) {
-        return(
-          <i class="el-icon-edit"></i>
-        )
+        return[
+          <el-link type="primary" underline={false} onClick={() => {}}><i class="el-icon-delete"></i></el-link>,
+          <el-divider direction="vertical"></el-divider>,
+          <el-link type="primary" underline={false} onClick={() => {}}><i class="el-icon-delete"></i></el-link>,
+        ]
       },
     }
   ]
@@ -430,9 +432,11 @@ export const departmentColums = (that)=>{
     {
       label: '操作',
       render(h,{row}) {
-        return(
-          <i class="el-icon-delete"></i>
-        )
+        return[
+          <el-link type="primary" underline={false} onClick={() => {}}><i class="el-icon-delete"></i></el-link>,
+          <el-divider direction="vertical"></el-divider>,
+          <el-link type="primary" underline={false} onClick={() => {}}><i class="el-icon-delete"></i></el-link>,
+        ]
       },
     }
   ]

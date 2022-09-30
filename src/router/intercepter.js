@@ -22,7 +22,55 @@ export const beforeEachInterceptor = async (to, from, next) => {
     if (isEmpty(asyncRoutes)) {
       let { userInfo } = useUserStore;
       if (isEmpty(userInfo)) userInfo = (await useUserStore.getInfo()).data;
-      const { resourceCodes } = userInfo;
+      // const { resourceCodes } = userInfo;
+      const resourceCodes = [
+        'Person',
+        'Start',
+        'Risk',
+        'Plan',
+        'Event',
+        'Area',
+        'Operation',
+        'Other',
+        'Extension',
+        'Report',
+        'Pending',
+        'PendingTask',
+        'Done',
+        'DoneTask',
+        'Form',
+        'RiskForm',
+        'CheckForm',
+        'TemporaryForm',
+        'SurveyForm',
+        'EventForm',
+        'FaultForm',
+        'MaintenPlan',
+        'Safety',
+        'year',
+        'Noyear',
+        'DataAnalyse',
+        'DataHandle',
+        'FaultDetails',
+        'AreaDetails',
+        'OperationDetails',
+        'AreaChange',
+        'OperationChange',
+        'Manual',
+        'ManualArea',
+        'ManualOperation',
+        'Equipment',
+        'Handle',
+        'Basic',
+        'Assets', 
+        'FaultType',
+        'SafetyPlan',
+        'MaintenQuota',
+        'DoubleDefense',
+        'User',
+        'Personnel',
+        'Role'
+      ]
 
       asyncRoutes = filterAsyncRoutesByCode(resourceCodes, staticAsyncRoutes);
       const settedRoutes = await useUserStore.setAsyncRoutes(asyncRoutes);

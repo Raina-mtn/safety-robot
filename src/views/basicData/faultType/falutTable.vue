@@ -1,7 +1,7 @@
 <template>
   <div class="warpper">
     <WForm
-      label-width="90px"
+      label-width="110px"
       :form-data="formData"
       :columns="typeFormColums"
       size="mini"
@@ -26,7 +26,8 @@
 
 <script>
 import { WForm,WTable } from '@common-ui/w-form';
-import {typeFormColums,typeColums} from './config'
+import {typeFormColums,typeColums,modeFormColums,modeColums} from './config'
+import {typeBasicData,modeBasicData} from '@/utils/data'
 export default {
   components:{
     WForm,
@@ -35,8 +36,8 @@ export default {
   data() {
     return {
       formData:{},
-      tableData:[],
-      total:0
+      // tableData:[],
+      total:1
       
     }
   },
@@ -47,13 +48,32 @@ export default {
     }
   },
   computed:{
-    typeFormColums(){
-      return typeFormColums()
+    formColums(){
+      switch (this.activeName){
+        case 'type':
+          return typeFormColums()
+        case 'mode':
+          return modeFormColums()
+      }
     },
 
     typeColums(){
-      return typeColums()
-    }
+      switch (this.activeName){
+        case 'type':
+          return typeColums()
+        case 'mode':
+          return modeColums()
+      }
+    },
+
+    tableData(){
+      switch (this.activeName){
+        case 'type':
+          return typeBasicData
+        case 'mode':
+          return modeBasicData
+      }
+    },
   }
 }
 </script>

@@ -7,7 +7,7 @@ export const typeFormColums =(that)=> {
       el: 'input',
       placeholder: '请输入',
       clearable: true,
-      span: 6
+      span: 8
     },
     {
       prop:'btns',
@@ -20,24 +20,53 @@ export const typeFormColums =(that)=> {
 export const typeColums = (that)=>{
   return [
     {
-      label: '序号',
-      prop: 'realName',
-    }, 
-    {
       label: '资产前九位',
-      prop: 'realName',
+      prop: 'assets',
     }, 
     {
-      label: '类型描述',
-      prop: 'realName',
+      label: '故障类型',
+      prop: 'typeDescribe',
     }, 
     {
       label: '标准工时（h）',
-      prop: 'realName',
+      prop: 'workTime',
     }, 
     {
       label: '紧急程度',
-      prop: 'realName',
+      prop: 'degree',
+    }
+  ]
+}
+
+//处理方式-表单
+export const modeFormColums =(that)=> {
+  return [
+    {
+      label: '处理方式',
+      prop: 'userNameLike',
+      el: 'input',
+      placeholder: '请输入',
+      clearable: true,
+      span: 8
+    },
+    {
+      prop:'btns',
+      span:4
+    }
+  ]
+}
+
+//处理方式-表格
+export const modeColums = (that)=>{
+  return [
+    {
+      label: '资产前九位',
+      prop: 'assets',
+      width:300
+    }, 
+    {
+      label: '类型描述',
+      prop: 'typeDescribe'
     }
   ]
 }

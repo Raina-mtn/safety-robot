@@ -2,7 +2,7 @@
 export const noInputFormColums =(that)=> {
   return [
     {
-      prop:'btns',
+      prop:'btns1',
       span:16
     }
   ]
@@ -13,21 +13,21 @@ export const inputFormColums =(that)=> {
       label: '原责任人',
       prop: 'userNameLike',
       el: 'input',
-      placeholder: '请输入',
+      placeholder: '请输入员工号',
       clearable: true,
-      span: 16
+      span: 8
     },
     {
       label: '新责任人',
       prop: 'userNameLike',
       el: 'input',
-      placeholder: '请输入',
+      placeholder: '请输入员工号',
       clearable: true,
-      span: 16
+      span: 8
     },
     {
-      prop:'btns',
-      span:4
+      prop:'btns2',
+      span:8
     }
   ]
 }
@@ -36,43 +36,41 @@ export const inputFormColums =(that)=> {
 export const areaColums = (that)=>{
   return [
     {
-      label: '序号',
-      prop: 'realName',
-    }, 
-    {
       label: '编号',
-      prop: 'realName',
+      prop: 'id',
     }, 
     {
       label: '名称',
-      prop: 'realName',
+      prop: 'name',
     }, 
     {
       label: '责任人',
-      prop: 'realName',
+      prop: 'responsible',
     }, 
     {
       label: '责任部门',
-      prop: 'realName',
+      prop: 'responsibleDep',
     }, 
     {
       label: '责任岗位',
-      prop: 'realName',
+      prop: 'responsibleSta',
     }, 
     {
       label: '业务板块',
-      prop: 'realName',
+      prop: 'part',
     }, 
     {
       label: '状态',
-      prop: 'realName',
+      prop: 'status',
     }, 
     {
       label: '操作',
       render(h,{row}) {
-        return(
-          <i class="el-icon-edit"></i>
-        )
+        return[
+          <el-link type="primary" underline={false} onClick={() => {that.$refs.addDialog.openDialog(that.activeName,'edit')}}><i class="el-icon-edit"></i></el-link>,
+          <el-divider direction="vertical"></el-divider>,
+          <el-link type="primary" underline={false} onClick={() => {}}><i class="el-icon-delete"></i></el-link>,
+        ]
       },
     }
   ]
@@ -116,9 +114,11 @@ export const projectColums = (that)=>{
     {
       label: '操作',
       render(h,{row}) {
-        return(
-          <i class="el-icon-edit"></i>
-        )
+        return[
+          <el-link type="primary" underline={false} onClick={() => {that.$refs.addDialog.openDialog(that.activeName,'edit')}}><i class="el-icon-edit"></i></el-link>,
+          <el-divider direction="vertical"></el-divider>,
+          <el-link type="primary" underline={false} onClick={() => {}}><i class="el-icon-delete"></i></el-link>,
+        ]
       },
     }
   ]
@@ -146,9 +146,11 @@ export const superviseColums = (that)=>{
     {
       label: '操作',
       render(h,{row}) {
-        return(
-          <i class="el-icon-edit"></i>
-        )
+        return[
+          <el-link type="primary" underline={false} onClick={() => {that.$refs.addDialog.openDialog(that.activeName,'edit')}}><i class="el-icon-edit"></i></el-link>,
+          <el-divider direction="vertical"></el-divider>,
+          <el-link type="primary" underline={false} onClick={() => {}}><i class="el-icon-delete"></i></el-link>,
+        ]
       },
     }
   ]

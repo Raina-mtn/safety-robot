@@ -1,16 +1,15 @@
 <template>
   <PageLayout class="app-container">
     <WForm
-      label-width="90px"
+      label-width="110px"
       :form-data="formData"
       :columns="safetyFormColums"
       size="mini"
-      :rules="troubleRules"
       @inputEnter="getList"
     >
     <div slot="btns">
       <el-button type="primary">查询</el-button>
-      <el-button type="primary" @click="$refs.safetyDialog.openDialog()">新增</el-button>
+      <el-button type="primary" @click="$refs.addDialog.openDialog()">新增</el-button>
       <el-button type="primary">导入</el-button>
       <el-button type="primary">导出</el-button>
     </div>
@@ -25,7 +24,7 @@
       :header-cell-style="{background:'#eee'}"
       @pageChange="getList" 
     />
-    <SafetyDialog ref="safetyDialog"></SafetyDialog>
+    <AddDialog ref="addDialog"></AddDialog>
   </PageLayout>
 </template>
 
@@ -33,29 +32,32 @@
 import { WTable,WForm } from '@common-ui/w-form';
 import PageLayout from '@/components/page-layout/index.vue'
 import {safetyFormColums,safetyColums} from './config'
-import SafetyDialog from './safetyDialog.vue';
+import AddDialog from './addDialog.vue';
 export default {
   components:{
     WTable,
     WForm,
     PageLayout,
-    SafetyDialog
+    AddDialog
   },
   data() {
     return {
       formData:{},
-      tableData:[],
-      total:0,
+      tableData:[
+        {
+          realName:'1'
+        },
+        {
+          realName:'2'
+        },
+        {
+          realName:'3'
+        },
+      ],
+      total:3,
+      safetyFormColums:safetyFormColums(),
+      safetyColums:safetyColums(this)
     }
-  },
-  computed:{
-    safetyFormColums(){
-      return safetyFormColums(this)
-    },
-
-    safetyColums(){
-      return safetyColums(this)
-    },
   },
   methods: {
 

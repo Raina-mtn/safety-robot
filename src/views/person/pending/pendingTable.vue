@@ -26,17 +26,45 @@
 
 <script>
 import { WForm,WTable } from '@common-ui/w-form';
-import {riskFormColums,riskColums,otherColums,eventColums,extensionColums,operationColums,areaColums} from './config'
+import {
+  riskPersonData,
+  eventPersonData,
+  operationPersonData,
+  areaPersonData,
+  checkPersonData,
+  temporaryPersonData,
+  surveyPersonData,
+  extensionPersonData,
+  reportPersonData
+  } from '@/utils/data'
+import {
+  riskFormColums,
+  eventFormColums,
+  checkFormColums,
+  temporaryFormColums,
+  surveyFormColums,
+  extensionFormColums,
+  reportFormColums,
+  riskColums,
+  eventColums,
+  operationColums,
+  areaColums,
+  checkColums,
+  temporaryColums,
+  surveyColums,
+  extensionColums,
+  reportColums,
+  } from './config'
 export default {
   components:{
     WForm,
-    WTable,
+    WTable
   },
   data() {
     return {
       formData:{},
-      tableData:[],
-      total:0
+      // tableData:[],
+      total:1
       
     }
   },
@@ -48,25 +76,70 @@ export default {
   },
   computed:{
     columns(){
-      return riskFormColums()
+      switch (this.activeName) {
+        case 'risk':
+          return riskFormColums()
+        case 'event':
+          return eventFormColums()
+        case 'check':
+          return checkFormColums()
+        case 'temporary':
+          return temporaryFormColums()
+        case 'survey':
+          return surveyFormColums()
+        case 'extension':
+          return extensionFormColums()
+        case 'report':
+          return reportFormColums()
+      }
     },
 
     tableColums(){
       switch (this.activeName) {
         case 'risk':
-          return riskColums()
-        case 'other':
-          return otherColums()
+          return riskColums(this)
         case 'event':
-          return eventColums()
-        case 'extension':
-          return extensionColums()
+          return eventColums(this)
         case 'operation':
-          return operationColums()
+          return operationColums(this)
         case 'area':
-          return areaColums()
+          return areaColums(this)
+        case 'check':
+          return checkColums(this)
+        case 'temporary':
+          return temporaryColums(this)
+        case 'survey':
+          return surveyColums(this)
+        case 'extension':
+          return extensionColums(this)
+        case 'report':
+          return reportColums(this)
       }
-    }
+    },
+
+    tableData(){
+      switch (this.activeName) {
+        case 'risk':
+          return riskPersonData
+        case 'event':
+          return eventPersonData
+        case 'operation':
+          return [{realName:'测试'}]
+        case 'area':
+          return [{realName:'测试'}]
+        case 'check':
+          return checkPersonData
+        case 'temporary':
+          return temporaryPersonData
+        case 'survey':
+          return surveyPersonData
+        case 'extension':
+          return extensionPersonData
+        case 'report':
+          return reportPersonData
+      }
+    },
+
   }
 }
 </script>

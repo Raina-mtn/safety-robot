@@ -38,7 +38,11 @@ export const safetyColums = (that)=>{
     }, 
     {
       label: '操作',
-      prop: 'realName',
+      render(h,{row}) {
+        return(
+          <el-link type="primary" underline={false} onClick={() => {that.tableData.splice(row.$index, 1)}}><i class="el-icon-delete"></i></el-link>
+        )
+      },
     }
   ]
 }
@@ -64,10 +68,6 @@ export const dialogFormColums =(that)=> {
     },
     {
       prop:'radio',
-      span:16
-    },
-    {
-      prop:'btns',
       span:16
     }
   ]

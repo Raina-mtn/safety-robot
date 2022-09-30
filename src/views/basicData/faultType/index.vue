@@ -2,16 +2,10 @@
   <PageLayout class="app-container">
     <div class="pending-tabs">
       <el-tabs v-model="activeName" class="tabs-box" type="card">
-        <el-tab-pane name="type" lazy>
-          <span slot="label">
-            故障类型<el-badge :value="12" class="item"/>
-          </span>
+        <el-tab-pane name="type" label="故障类型" lazy>
           <FalutTable :activeName="activeName"></FalutTable>
         </el-tab-pane>
-        <el-tab-pane name="handle" lazy>
-          <span slot="label">
-            处理方式<el-badge :value="12" class="item"/>
-          </span>
+        <el-tab-pane name="mode" label="处理方式" lazy>
           <FalutTable :activeName="activeName"></FalutTable>
         </el-tab-pane>
       </el-tabs>

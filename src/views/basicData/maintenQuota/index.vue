@@ -1,7 +1,7 @@
 <template>
   <PageLayout class="app-container">
     <WForm
-      label-width="90px"
+      label-width="110px"
       :form-data="formData"
       :columns="maintenFormColums"
       size="mini"
@@ -10,8 +10,9 @@
     >
     <div slot="btns">
       <el-button type="primary">查询</el-button>
-      <el-button type="primary" @click="$refs.safetyDialog.openDialog()">新增</el-button>
+      <el-button type="primary" @click="$refs.maintenDialog.openDialog()">新增</el-button>
       <el-button type="primary">导入</el-button>
+      <el-button type="primary"><i class="el-icon-download"></i>下载模板</el-button>
       <el-button type="primary">导出</el-button>
     </div>
     </WForm>
@@ -22,6 +23,8 @@
       :page="formData" 
       :total="total" 
       :size="'mini'" 
+      :selection="true"
+      :selectable="()=>true"
       :header-cell-style="{background:'#eee'}"
       @pageChange="getList" 
     />
@@ -34,6 +37,7 @@ import { WTable,WForm } from '@common-ui/w-form';
 import PageLayout from '@/components/page-layout/index.vue'
 import {maintenFormColums,maintenColums} from './config'
 import MaintenDialog from './maintenDialog.vue';
+import {maintenBasicData} from '@/utils/data'
 export default {
   components:{
     WTable,
@@ -44,8 +48,9 @@ export default {
   data() {
     return {
       formData:{},
-      tableData:[],
-      total:0,
+      // tableData:[],
+      tableData:maintenBasicData,
+      total:1,
     }
   },
   computed:{

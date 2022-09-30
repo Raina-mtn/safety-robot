@@ -1,7 +1,7 @@
 <template>
-  <PageLayout class="app-container">
+  <div class="app-container">
     <WForm
-      label-width="90px"
+      label-width="110px"
       :form-data="formData"
       :columns="operationFormColums"
       size="mini"
@@ -23,7 +23,7 @@
       :header-cell-style="{background:'#eee'}"
       @pageChange="getList" 
     />
-  </PageLayout>
+  </div>
 </template>
 
 <script>
@@ -39,18 +39,15 @@ export default {
   data() {
     return {
       formData:{},
-      tableData:[],
-      total:0,
+      tableData:[
+        {
+          realName:'测试'
+        }
+      ],
+      total:1,
+      operationFormColums:operationFormColums(),
+      operationColums:operationColums()
     }
-  },
-  computed:{
-    operationFormColums(){
-      return operationFormColums(this)
-    },
-
-    operationColums(){
-      return operationColums(this)
-    },
   },
   methods: {
 

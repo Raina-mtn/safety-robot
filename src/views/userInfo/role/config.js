@@ -1,258 +1,84 @@
-//权限配置、角色配置-表单
-export const permissionFormColums =(that)=> {
+//角色管理-表单
+export const formColumns =(that)=> {
   return [
     {
-      prop:'btns',
-      span:4
-    }
-  ]
-}
-
-//权限--角色配置-表单
-export const perRoleFormColums =(that)=> {
-  return [
-    {
-      label: '角色',
-      prop: 'userNameLike',
+      label: '角色编码',
+      prop: 'code',
       el: 'input',
-      placeholder: '请输入',
+      placeholder: '请输入角色编码',
       clearable: true,
       span: 6
     }, 
     {
-      prop:'btns',
-      span:8
-    }
-  ]
-}
-
-//角色人员--配置-表单
-export const rolePersonFormColums =(that)=> {
-  return [
-    {
-      label: '人员',
-      prop: 'userNameLike',
+      label: '角色名称',
+      prop: 'nameLike',
       el: 'input',
-      placeholder: '请输入',
+      placeholder: '请输入角色名称',
       clearable: true,
       span: 6
     }, 
     {
-      prop:'btns',
-      span:8
+      prop: 'btns'
     }
   ]
 }
 
-//权限配置-表格
-export const permissionColums = (that)=>{
-  return [
-    {
-      label: '序号',
-      prop: 'realName',
-    }, 
-    {
-      label: '权限ID',
-      prop: 'realName',
-    }, 
-    {
-      label: '权限名称',
-      prop: 'realName',
-    }, 
-    {
-      label: '操作',
-      render: (h, { row }) => {
-        return [
-          <el-link type="primary" underline={false} onClick={() => {}}><i class="el-icon-edit"></i></el-link>,
-          <el-link type="primary" underline={false} onClick={() => {}}><i class="el-icon-delete"></i></el-link>
-        ]
-      }
-    }, 
-  ]
-}
-
-//角色配置-表格
+//角色管理-表格
 export const roleColums = (that)=>{
-  return [
+  return[
     {
-      label: '序号',
-      prop: 'realName',
-    }, 
+      label: 'id',
+      prop: 'id'
+    },
+    {
+      label: '角色名称',
+      prop: 'name'
+    },
     {
       label: '角色编码',
-      prop: 'realName',
-    }, 
+      prop: 'code'
+    },
     {
-      label: '角色名称',
-      prop: 'realName',
-    }, 
-    {
-      label: '操作',
-      render: (h, { row }) => {
-        return [
-          <el-link type="primary" underline={false} onClick={() => {}}><i class="el-icon-edit"></i></el-link>,
-          <el-link type="primary" underline={false} onClick={() => {}}><i class="el-icon-delete"></i></el-link>
-        ]
-      }
-    }, 
-  ]
-}
-
-//权限--角色-表格
-export const perRoleColums = (that)=>{
-  return [
-    {
-      label: '序号',
-      prop: 'realName',
-    }, 
-    {
-      label: '权限代码',
-      prop: 'realName',
-    }, 
-    {
-      label: '权限名称',
-      prop: 'realName',
-    }, 
+      label: '创建时间',
+      prop: 'createTime'
+    },
     {
       label: '操作',
       render: (h, { row }) => {
         return [
-          <el-link type="primary" underline={false} onClick={() => {}}><i class="el-icon-edit"></i></el-link>,
-          <el-link type="primary" underline={false} onClick={() => {}}><i class="el-icon-delete"></i></el-link>
+            <el-link type="primary" underline={false} onClick={() => {that.$refs.roleDialog.openDialog('edit')}}><i class="el-icon-edit"></i></el-link>,
+            <el-divider direction="vertical" />,
+            <el-link type="primary" underline={false} onClick={() => {}}><i class="el-icon-delete"></i></el-link>,
         ]
       }
-    }, 
-  ]
-}
-
-//角色人员--配置-表格
-export const rolePersonlColums = (that)=>{
-  return [
-    {
-      label: '序号',
-      prop: 'realName',
-    }, 
-    {
-      label: '角色代码',
-      prop: 'realName',
-    }, 
-    {
-      label: '角色名称',
-      prop: 'realName',
-    }, 
-    {
-      label: '操作',
-      render: (h, { row }) => {
-        return [
-          <el-link type="primary" underline={false} onClick={() => {}}><i class="el-icon-edit"></i></el-link>,
-          <el-link type="primary" underline={false} onClick={() => {}}><i class="el-icon-delete"></i></el-link>
-        ]
-      }
-    }, 
-  ]
-}
-
-
-//权限配置-新增
-export const permission =(that)=> {
-  return [
-    {
-      label: '权限ID',
-      prop: 'userNameLike',
-      el: 'input',
-      placeholder: '请输入',
-      clearable: true,
-      span: 24
-    }, 
-    {
-      label: '权限名称',
-      prop: 'userNameLike',
-      el: 'input',
-      placeholder: '请输入',
-      clearable: true,
-      span: 24
-    }, 
-    {
-      prop:'btns',
-      span:24
     }
   ]
 }
 
-//角色配置-新增
-export const role =(that)=> {
+//新增角色-表单
+export const addFormColumns =(that)=> {
   return [
     {
       label: '角色编码',
-      prop: 'userNameLike',
+      prop: 'code',
       el: 'input',
-      placeholder: '请输入',
+      placeholder: '请输入角色编码',
       clearable: true,
-      span: 24
+      rules: {
+        required: true, message: '请输入角色编码'
+      },
+      span: 22
     }, 
     {
       label: '角色名称',
-      prop: 'userNameLike',
+      prop: 'name',
       el: 'input',
-      placeholder: '请输入',
+      placeholder: '请输入角色名称',
       clearable: true,
-      span: 24
-    }, 
-    {
-      prop:'btns',
-      span:24
-    }
-  ]
-}
-
-//权限--角色-新增
-export const perRole =(that)=> {
-  return [
-    {
-      label: '角色',
-      prop: 'userNameLike',
-      el: 'select',
-      placeholder: '请选择',
-      clearable: true,
-      span: 24
-    }, 
-    {
-      label: '权限',
-      prop: 'userNameLike',
-      el: 'select',
-      placeholder: '请输入关键词',
-      clearable: true,
-      span: 24
-    }, 
-    {
-      prop:'btns',
-      span:24
-    }
-  ]
-}
-
-//权限--角色-新增
-export const rolePerson =(that)=> {
-  return [
-    {
-      label: '人员',
-      prop: 'userNameLike',
-      el: 'input',
-      placeholder: '请输入',
-      clearable: true,
-      span: 24
-    }, 
-    {
-      label: '角色',
-      prop: 'userNameLike',
-      el: 'select',
-      placeholder: '请输入关键词',
-      clearable: true,
-      span: 24
-    }, 
-    {
-      prop:'btns',
-      span:24
+      rules: {
+        required: true, message: '请输入角色名称'
+      },
+      span: 22
     }
   ]
 }

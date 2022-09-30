@@ -6,7 +6,7 @@
     center
   >
     <WForm
-      label-width="90px"
+      label-width="110px"
       :form-data="formData"
       :columns="dialogFormColums"
       size="mini"
@@ -17,18 +17,22 @@
           <el-radio v-model="formData.status" label="1">禁用</el-radio>
         </el-form-item>
       </div>
-      <div slot="btns">
-        <el-button type="primary">取消</el-button>
-        <el-button type="primary">确定</el-button>
-      </div>
     </WForm>
+    <div slot="footer" class="btn-grops">
+      <el-button icon="el-icon-circle-close" @click="closeDialog">
+        取 消
+      </el-button>
+      <el-button icon="el-icon-circle-check" type="primary" @click="submit">
+        确 定
+      </el-button>
+    </div>
   </el-dialog>
 </template>
 <script>
 import {dialogFormColums} from './config'
 import { WForm } from '@common-ui/w-form';
 export default {
-  name:'maintenDialog',
+  name:'MaintenDialog',
   components:{
     WForm
   },
@@ -60,8 +64,5 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.upload{
-  margin: 10px auto;
-}
 
 </style>

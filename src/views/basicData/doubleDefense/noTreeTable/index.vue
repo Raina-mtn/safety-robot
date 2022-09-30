@@ -1,28 +1,18 @@
 <template>
   <div class="warpper">
     <WForm
-      v-if="isShow"
-      label-width="90px"
+      label-width="110px"
       :form-data="formData"
-      :columns="noInputFormColums"
+      :columns="formColums"
       size="mini"
       @inputEnter="getList"
     >
-    <div slot="btns">
-      <el-button type="primary">新增</el-button>
+    <div slot="btns1">
+      <el-button type="primary" @click="$refs.addDialog.openDialog(activeName,'add')">新增</el-button>
     </div>
-    </WForm>
-    <WForm
-    v-else
-      label-width="90px"
-      :form-data="formData"
-      :columns="inputFormColums"
-      size="mini"
-      @inputEnter="getList"
-    >
-    <div slot="btns">
-      <el-button type="primary">新增</el-button>
+    <div slot="btns2">
       <el-button type="primary">查询</el-button>
+      <el-button type="primary" @click="$refs.addDialog.openDialog(activeName,'add')">新增</el-button>
     </div>
     </WForm>
     <WTable
@@ -35,14 +25,29 @@
     :header-cell-style="{background:'#eee'}"
     @pageChange="getList" 
   />
+  <AddDialog ref="addDialog"></AddDialog>
   </div>
 </template>
 
 <script>
 import { WForm,WTable } from '@common-ui/w-form';
+import AddDialog from '../addDialog.vue'
+import {
+  typeDoubleData,
+  gradeDoubleData,
+  frequencyDoubleData,
+  eventDoubleData,
+  levelDoubleData,
+  staffDoubleData,
+  hazardDoubleData,
+  checkDoubleData,
+  lDoubleData,
+  eDoubleData
+} from '@/utils/data'
 import {
   noInputFormColums,
-  inputFormColums,
+  inputFormColums1,
+  inputFormColums2,
   typeColums,
   gradeColums,
   frequencyColums,
@@ -61,13 +66,13 @@ export default {
   components:{
     WForm,
     WTable,
+    AddDialog
   },
   data() {
     return {
       formData:{},
-      tableData:[],
-      total:0,
-      isShow:true
+      // tableData:[],
+      total:1
       
     }
   },
@@ -78,47 +83,79 @@ export default {
     }
   },
   computed:{
-    noInputFormColums(){
-      return noInputFormColums()
-    },
-
-    inputFormColums(){
-      return inputFormColums()
+    formColums(){
+      switch (this.activeName) {
+        case 'station':
+          return inputFormColums1()
+        case 'department':
+          return inputFormColums2()
+        default:
+          return noInputFormColums()
+      }
     },
 
     tableColums(){
-      this.isShow = false;
       switch (this.activeName) {
         case 'type':
-          return typeColums()
+          return typeColums(this)
         case 'grade':
-          return gradeColums()
+          return gradeColums(this)
         case 'frequency':
-          return frequencyColums()
+          return frequencyColums(this)
         case 'event':
-          return eventColums()
+          return eventColums(this)
         case 'level':
-          return levelColums()
+          return levelColums(this)
         case 'staff':
-          return staffColums()
+          return staffColums(this)
         case 'hazard':
-          return hazardColums()
+          return hazardColums(this)
         case 'check':
-          return checkColums()
+          return checkColums(this)
         case 'l':
-          return lColums()
+          return lColums(this)
         case 'e':
-          return eColums()
+          return eColums(this)
         case 'c':
-          return cColums()
+          return cColums(this)
         case 'station':
-          this.isShow = false;
-          return stationColums()
+          return stationColums(this)
         case 'department':
-          this.isShow = false;
-          return departmentColums()
+          return departmentColums(this)
       }
-    }
+    },
+
+    tableData(){
+      switch (this.activeName) {
+        case 'type':
+          return typeDoubleData
+        case 'grade':
+          return gradeDoubleData
+        case 'frequency':
+          return frequencyDoubleData
+        case 'event':
+          return eventDoubleData
+        case 'level':
+          return levelDoubleData
+        case 'staff':
+          return staffDoubleData
+        case 'hazard':
+          return hazardDoubleData
+        case 'check':
+          return checkDoubleData
+        case 'l':
+          return lDoubleData
+        case 'e':
+          return eDoubleData
+        case 'c':
+          return []
+        case 'station':
+          return []
+        case 'department':
+          return []
+      }
+    },
+
   }
 }
 </script>

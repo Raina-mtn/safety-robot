@@ -7,16 +7,20 @@
     center
   >
     <WForm
-      label-width="90px"
+      label-width="110px"
       :form-data="formData"
       :columns="moreFormColums"
       size="mini"
       >
-      <div slot="btns">
-        <el-button type="primary">重置</el-button>
-        <el-button type="primary">查询</el-button>
-      </div>
     </WForm>
+    <div slot="footer" class="btn-grops">
+      <el-button icon="el-icon-circle-close">
+        重 置
+      </el-button>
+      <el-button icon="el-icon-circle-check" type="primary" @click="submit">
+        查 询
+      </el-button>
+    </div>
   </el-dialog>
 </template>
 <script>

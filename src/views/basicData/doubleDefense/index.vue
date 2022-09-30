@@ -66,7 +66,7 @@ export default {
   components:{
     PageLayout,
     NoTree,
-    HaveTree
+    HaveTree,
   },
   data() {
     return {
