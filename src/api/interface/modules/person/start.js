@@ -1,6 +1,6 @@
 import request from '@/api/baseHttp/index.js'
 // 开启流程
-export const startFlow = () => request({
+export const startFlow = (data) => request({
   url: '/flow/start',
   method: 'post',
   data

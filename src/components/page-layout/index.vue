@@ -2,7 +2,7 @@
   <div class="pageLayout-container">
     <div>
       <div class="title-area">
-        <Breadcrumb></Breadcrumb>
+        <Breadcrumb />
       </div>
       <slot />
     </div>
@@ -28,7 +28,7 @@ export default {
   box-sizing: border-box;
   &>div{
     padding:0 20px 10px 20px;
-    background-color: #fff;
+    // background-color: #fff;
   }
   .title-area {
     width: 100%;
