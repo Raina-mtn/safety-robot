@@ -1,0 +1,61 @@
+@import "./themes.scss";
+
+//遍历主题map
+@mixin themeify {
+    @each $theme-name, $theme-map in $themes {
+        //!global 把局部变量强升为全局变量
+        $theme-map: $theme-map !global;
+        //判断html的data-theme的属性值  #{}是sass的插值表达式
+        //& sass嵌套里的父容器标识   @content是混合器插槽，像vue的slot
+        [data-theme="#{$theme-name}"] & {
+            @content;
+        }
+    }
+}
+
+//声明一个根据Key获取颜色的function
+@function themed($key,$opcity) {
+    @if $opcity != 1 {
+        @return rgb(map-get($theme-map, $key), $opcity);
+      }
+    @return map-get($theme-map, $key);
+      
+    
+}
+
+//获取背景颜色
+@mixin background_color($color, $opcity:1) {
+    @include themeify {
+        background:themed($color,$opcity)!important;
+    }
+}
+//获取特殊背景颜色，渐变
+@mixin background_color_linear($color, $firstOpcity:1, $lasttOpcity) {
+    @include themeify {
+        background: linear-gradient(0deg, themed($color,$firstOpcity), themed($color,$lasttOpcity));
+    }
+}
+
+//获取字体颜色
+@mixin font_color($color, $opcity:1) {
+    @include themeify {
+        color: themed($color,$opcity)!important;
+    }
+}
+
+//获取边框颜色
+@mixin border_color($color, $opcity:1) {
+    @include themeify {
+        border-color: themed($color,$opcity)!important;
+    }
+}
+
+//获取阴影颜色
+@mixin box_shadow($h-shadow,$v-shadow,$blur,$spread,$color,$opcity:1,$direction:'outset', ) {
+    @if $direction == 'inset' {
+        box-shadow: $h-shadow $v-shadow $blur $spread themed($color,$opcity) $direction!important;
+    }@else{
+        box-shadow: $h-shadow $v-shadow $blur $spread themed($color,$opcity) !important;
+    }
+    
+}

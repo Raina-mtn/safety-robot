@@ -1,0 +1,6 @@
+// @import './primary/index.scss';
+@import './handle';
+@function px2rem($px) {
+    $design_font_size: 12;
+    @return ($px/$design_font_size) + rem;
+}

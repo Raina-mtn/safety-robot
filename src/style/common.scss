@@ -1,0 +1,104 @@
+@import './theme/index.scss';
+
+#app{
+  background-color: #051033;
+  .app-main{
+    background-color: #051033;
+  }
+}
+// 导航条样式
+#app .sidebar-container {
+  .el-scrollbar__view{
+    .el-menu{
+      background-color: #001559 !important;
+      color: #fff;
+    }
+    .el-submenu.is-active .el-submenu__title{
+      background-color: transparent !important;
+    }
+    .el-submenu__title,.el-menu-item{
+      background-color: #001559 !important;
+      color: #fff !important;
+    }
+    .el-menu-item.is-active,.el-menu-item:hover{
+      background-color: #1863C5 !important;
+      color: #fff !important;
+    }
+  }
+}
+
+.el-input--mini .el-input__inner,.el-textarea__inner,.el-input.is-disabled .el-input__inner,.el-upload--picture-card{
+  background-color: transparent;
+}
+.el-form-item--mini .el-form-item__label,.el-tabs__item{
+  color: #fff;
+}
+.el-divider__text.is-left{
+  color: #fff;
+  background-color: #051033;
+}
+.el-table {
+  &::before {
+      height: 0 !important;
+  }
+  th {
+      background: rgba(45,130,251,0.5) !important;;
+      border: none !important;
+      color: #fff;
+  }
+  td,th {
+      border-bottom: none !important;
+  }
+  .el-table__body-wrapper {
+      .el-table__row--striped {
+          td {
+              background: #082275 !important;
+              color: #fff;
+          }
+      }
+  }
+}
+.el-table{
+  background: none !important;
+  border: none;
+  tr{
+      background: none !important;
+  }
+  .el-table__cell{
+    border: none;
+    color: #fff;
+  }
+} 
+.el-table--enable-row-hover .el-table__body tr:hover>td.el-table__cell{
+  background: rgba(24,99,197,0.5) !important;
+}
+
+.el-pagination{
+  .btn-prev,.btn-next,.number,.el-input__inner{
+    background-color: transparent !important;
+    color: #fff;
+  }
+}
+
+.el-dialog{
+  background-color: #000C32 !important;
+  .el-dialog__header{
+    background-color: #2D82FB !important;
+    .el-dialog__title{
+      color: #fff;
+    }
+  }
+}
+
+.el-page-header{
+  background-color: transparent !important;
+  &>div{
+    color: #fff;
+  }
+}
+.content{
+  background-color: transparent !important;
+  .el-divider__text .is-left,.el-textarea__inner{
+    background-color: #051033 !important;
+  }
+}

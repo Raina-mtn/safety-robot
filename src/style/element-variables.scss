@@ -1,5 +1,5 @@
 /* 改变主题色变量 */
-$--color-primary: #E99A13;
+$--color-primary: #3975C0;
 /* 改变 icon 字体路径变量，必需 */
 $--font-path: '~element-ui/lib/theme-chalk/fonts';
 
@@ -7,3 +7,4 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
 .custom{
   max-height: 200vh !important;
 }
+@import './common.scss';

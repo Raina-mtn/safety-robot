@@ -17,7 +17,7 @@ VueRouter.prototype.push = function push(location, onResolve, onReject) {
 
 // 生成默认路由
 const router = new VueRouter({
-  base: '/micro-container/safe',
+  base: '/micro-container/robot',
   routes: constantRoutes,
   mode: 'history'
 });
@@ -25,7 +25,7 @@ const router = new VueRouter({
 // 重置路由
 export function resetRouter() {
   const newRouter = new VueRouter({
-    base: '/micro-container/safe',
+    base: '/micro-container/robot',
     routes: constantRoutes,
     mode: 'history'
   });

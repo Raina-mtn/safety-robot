@@ -1,0 +1,67 @@
+$themes: (
+    default: (
+        whiteColor:#fff,
+        activeTextColor:#1CDAFC,/*被选中时字体颜色*/
+        appBg: #000C32, /*整体背景色*/
+        colorPrimary:#2C77E3, /*  通用主题色 */
+        colorPrimaryDeep:#1863C5, /*  通用主题色加深 */
+        linearColor: linear-gradient(90deg, #1863C5, #1863C5),  /* 渐变颜色 */
+        linearHoverColor: linear-gradient(90deg, #1863C5, #1863C5), /* 渐变颜色交互 */
+        navBarBG:linear-gradient(90deg, #1863C5, #1863C5), /* 导航条背景 */
+        menuActiveColor: linear-gradient(90deg, #1863C5 0%, rgba(24,99,197,0.2) 100%), /* 菜单激活颜色 */
+        loginBg: linear-gradient(90deg, #F5A100 0%, #FFBB34 100%), /* 登陆页背景颜色 */
+        btnTextPrimary: #1CDAFC /* 按钮为text类型时通用颜色 */
+    ),
+    // green: (
+    //     whiteColor:#fff,
+    //     activeTextColor:#000,/*整体背景色*/
+    //     appBg: #e0e9dd, /*整体背景色*/
+    //     colorPrimary:#33D401, /*  通用主题色 */
+    //     colorPrimaryDeep:#2aa504, /*  通用主题色加深 */
+    //     linearColor: linear-gradient(90deg, #2aa504, #40a521),  /* 渐变颜色 */
+    //     linearHoverColor: linear-gradient(90deg, #238d03, #37a714), /* 渐变颜色交互 */
+    //     navBarBG: linear-gradient(90deg, #33D401, #238d03), /* 导航条背景 */
+    //     menuActiveColor: linear-gradient(90deg, #33D401, #238d03), /* 菜单激活颜色 */
+    //     loginBg: linear-gradient(90deg, #33D401 0%, #238d03 100%), /* 登陆页背景颜色 */
+    //     btnTextPrimary: #59A0FF /* 按钮为text类型时通用颜色 */
+    // ),
+    // black: (
+    //     whiteColor:#fff,
+    //     activeTextColor:#fff,/*整体背景色*/
+    //     appBg: #e2e2e2, /*整体背景色*/
+    //     colorPrimary:#130C0E, /*  通用主题色 */
+    //     colorPrimaryDeep:#0f0f0f, /*  通用主题色加深 */
+    //     linearColor: linear-gradient(90deg, #2f2729, #130C0E),  /* 渐变颜色 */
+    //     linearHoverColor: linear-gradient(90deg, #2f2729, #130C0E), /* 渐变颜色交互 */
+    //     navBarBG: linear-gradient(90deg, #2f2729, #130C0E), /* 导航条背景 */
+    //     menuActiveColor: linear-gradient(90deg, #2f2729, #130C0E), /* 菜单激活颜色 */
+    //     loginBg: linear-gradient(90deg, #2f2729 0%, #130C0E 100%), /* 登陆页背景颜色 */
+    //     btnTextPrimary: #59A0FF /* 按钮为text类型时通用颜色 */
+    // ),
+    // blue: (
+    //     whiteColor:#fff,
+    //     activeTextColor:#fff,/*整体背景色*/
+    //     appBg: #e9f3ff, /*整体背景色*/
+    //     colorPrimary:#014EAC, /*  通用主题色 */
+    //     colorPrimaryDeep:#033e86, /*  通用主题色加深 */
+    //     linearColor: linear-gradient(90deg, #014EAC, #033e86),  /* 渐变颜色 */
+    //     linearHoverColor: linear-gradient(90deg, #014EAC, #033e86), /* 渐变颜色交互 */
+    //     navBarBG: linear-gradient(90deg, #014EAC, #033e86), /* 导航条背景 */
+    //     menuActiveColor: linear-gradient(90deg, #014EAC, #033e86), /* 菜单激活颜色 */
+    //     loginBg: linear-gradient(90deg, #014EAC 0%, #033e86 100%), /* 登陆页背景颜色 */
+    //     btnTextPrimary: #59A0FF /* 按钮为text类型时通用颜色 */
+    // ),
+    // grey: (
+    //     whiteColor:#fff,
+    //     activeTextColor:#fff,/*整体背景色*/
+    //     appBg: #eeeeee, /*整体背景色*/
+    //     colorPrimary:#999999, /*  通用主题色 */
+    //     colorPrimaryDeep:#616161, /*  通用主题色加深 */
+    //     linearColor: linear-gradient(90deg, #999, #616161),  /* 渐变颜色 */
+    //     linearHoverColor: linear-gradient(90deg, #999, #616161), /* 渐变颜色交互 */
+    //     navBarBG: linear-gradient(90deg, #999, #616161), /* 导航条背景 */
+    //     menuActiveColor: linear-gradient(90deg, #999, #616161), /* 菜单激活颜色 */
+    //     loginBg: linear-gradient(90deg, #999 0%, #616161 100%), /* 登陆页背景颜色 */
+    //     btnTextPrimary: #59A0FF /* 按钮为text类型时通用颜色 */
+    // )
+);
