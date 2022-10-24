@@ -29,6 +29,7 @@
 
 .el-input--mini .el-input__inner,.el-textarea__inner,.el-input.is-disabled .el-input__inner,.el-upload--picture-card{
   background-color: transparent;
+  color: #fff;
 }
 .el-form-item--mini .el-form-item__label,.el-tabs__item{
   color: #fff;
@@ -101,4 +102,8 @@
   .el-divider__text .is-left,.el-textarea__inner{
     background-color: #051033 !important;
   }
+}
+
+.pageLayout-container > div{
+  background-color: #051033 !important;
 }

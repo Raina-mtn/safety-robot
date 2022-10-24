@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-import { constantRoutes, asyncRoutes } from './config';
-// import { beforeEachInterceptor } from './intercepter';
+import { constantRoutes } from './config';
+import { beforeEachInterceptor } from './intercepter';
 
 Vue.use(VueRouter);
 
@@ -26,12 +26,12 @@ const router = new VueRouter({
 export function resetRouter() {
   const newRouter = new VueRouter({
     base: '/micro-container/robot',
-    routes: [...constantRoutes, ...asyncRoutes],
+    routes: constantRoutes,
     mode: 'history'
   });
   router.matcher = newRouter.matcher; // reset router
 }
 
 // 路由守卫
-// router.beforeEach(beforeEachInterceptor);
+router.beforeEach(beforeEachInterceptor);
 export default router;

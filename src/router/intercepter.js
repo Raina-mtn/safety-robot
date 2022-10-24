@@ -25,6 +25,8 @@ export const beforeEachInterceptor = async (to, from, next) => {
       // const { resourceCodes } = userInfo;
       const resourceCodes = [
         'Static',
+        'RobotInfo',
+        'Station',
       ]
 
       asyncRoutes = filterAsyncRoutesByCode(resourceCodes, staticAsyncRoutes);

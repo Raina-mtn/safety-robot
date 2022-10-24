@@ -4,7 +4,7 @@
       <el-tabs v-model="activeName" class="tabs-box" type="card">
         <el-tab-pane name="power" label="供电" lazy />
         <el-tab-pane name="civil" label="土建" lazy />
-        <el-tab-pane name="official" label="公务" lazy />
+        <el-tab-pane name="official" label="工务" lazy />
         <el-tab-pane name="vehicle" label="车辆" lazy />
       </el-tabs>
     </div>

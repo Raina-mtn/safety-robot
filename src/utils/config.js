@@ -228,3 +228,14 @@ export const lineOptions =[
     value:3,
   }
 ]
+// 机器人状态
+export const deviceStatus = [
+  {
+    value: 0,
+    label: "在线",
+  },
+  {
+    value: 1,
+    label: "离线",
+  },
+];
