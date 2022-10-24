@@ -1,20 +1,31 @@
 <template>
   <div class="pageLayout-container">
-    <div>
-      <div class="title-area">
-        <Breadcrumb />
-      </div>
-      <slot />
+    <div class="pending-tabs">
+      <el-tabs v-model="activeName" class="tabs-box" type="card" @tab-click="handleClick">
+        <el-tab-pane name="power" label="供电" lazy />
+        <el-tab-pane name="vehicle" label="车辆" lazy />
+        <el-tab-pane name="civil" label="土建" lazy />
+        <el-tab-pane name="official" label="公务" lazy />
+      </el-tabs>
+      <slot name="header" />
     </div>
+    <slot name="content" />
   </div>
 </template>
 
 <script>
-import Breadcrumb from '@/components/Breadcrumb/index.vue'
 export default {
   name: 'PageLayout',
-  components:{
-    Breadcrumb
+  data() {
+    return {
+      activeName: 'power'
+    }
+  },
+  methods:{
+    handleClick(tab){
+      this.activeName = tab.name
+      this.$emit('tabChange')
+    }
   }
 }
 </script>
@@ -28,23 +39,7 @@ export default {
   box-sizing: border-box;
   &>div{
     padding:0 20px 10px 20px;
-    // background-color: #fff;
-  }
-  .title-area {
-    width: 100%;
-    border-bottom: 1px solid #d4d4d4;
-    height: 50px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    padding-left:14px;
-    margin-bottom: 20px;
-    box-sizing: border-box;
-    span{
-      color: #E99A13;
-      font-size: 18px;
-      font-weight: bold;
-    }
+    position: relative;
   }
 }
 </style>

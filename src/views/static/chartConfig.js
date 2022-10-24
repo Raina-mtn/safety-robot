@@ -1,181 +1,264 @@
-
-var colorList = ['#DF3AB9', '#18C79C', '#8555F9', '#F09228'];
-var data = [
-  {
-    name: '持续加固（加固改造）',
-    value: 41,
-    number: 502.4,
+const colorList = ['#70CE4B','#CEC64B','#F5A100','#EB0101','#A90404','#A476F2']
+// echart组件
+const linearColor = (startColor,endColor)=>({
+  type: 'linear',
+  x: 0,
+  y: 0,
+  x2: 0,
+  y2: 1,
+  colorStops: [{
+    offset: 0, color: startColor // 0% 处的颜色
+  }, {
+    offset: 1, color: endColor // 100% 处的颜色
+  }],
+})
+const barItemRender = ({name, startColor, endColor,data})=>({
+  name,
+  type: 'bar',
+  barWidth:12,
+  data,
+  itemStyle: {
+    color: linearColor(startColor, endColor),
+    borderRadius:[8, 8, 0, 0]
   },
-  {
-    name: '新建',
-    value: 92,
-    number: 302.1,
+})
+const legendRender = (option={})=>({legend:{
+  itemWidth:12,
+  itemHeight:12,
+  icon:'rect',
+  textStyle:{
+    height:20,
+    color: '#555'
   },
-  {
-    name: '改建',
-    value: 20,
-    number: 502.9,
-  },
-  {
-    name: '扩建',
-    value: 2,
-    number: 666.0,
-  },
-];
-var newData = [];
-// 加阴影效果
-for (var i = 0; i < data.length; i++) {
-  newData.push({
-    value: data[i].value,
-    name: data[i].name,
-    itemStyle: {
-      normal: {
-        // borderWidth: 0,
-        shadowBlur: 15,
-        // borderRadius: 1,
-        // borderColor: colorList[i],
-        shadowColor: colorList[i],
-      },
-    },
-  });
-}
-export const pieOption = {
-  title: {
-    text: '建设性质',
-    left: '24%',
-    top: 'center',
-    // x: 'left',
-    // y: 'center',
-    textStyle: {
-      fontSize: 24,
-    },
-  },
+  ...option
+}})
+const grid = {grid:{
+  right:20,
+  bottom:70
+}}
+const tooltip ={
   tooltip: {
-    trigger: 'item',
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow'
+    }
   },
-  legend: {
-    type: 'scroll',
-    orient: 'vertical',
-    right: '15%',
-    top: 'center',
-    //  itemGap: 40,
-    selectedMode: true,
-    icon: 'pin',
-    // shadowBlur:20,
-    // shadowColor:"#000",
-    textStyle: {
-      rich: {
-        a: {
-          color: '#666666',
-          fontSize: 14,
-          fontWeight: 500,
-          width: 30,
-          padding: [0, 0, 25, 2],
-        },
-        b0: {
-          // color: colorList[0],
-          color: '#666666',
-          fontSize: 14,
-          fontWeight: 500,
-          height: 20,
-          padding: [0, 30, 8, 4],
-        },
-        b1: {
-          // color:  colorList[1],
-          fontSize: 20,
-          padding: [0, 30, 0, 40],
-        },
-        b2: {
-          // color:  colorList[2],
-          fontSize: 20,
-          padding: [0, 30, 0, 40],
-        },
-        b3: {
-          // color:  colorList[3],
-          fontSize: 20,
-          padding: [0, 30, 0, 40],
-        },
-      },
-    },
-    formatter: function (name) {
-      var target;
-      var number;
-      for (var i = 0, l = data.length; i < l; i++) {
-        if (data[i].name == name) {
-          target = data[i].value;
-          number = data[i].number;
+}
+// 数据处理
+export const formatSeriesData = (configData, seriesData)=>{
+  let arr = []
+  configData.forEach(s => {
+    const {label,value} = s
+    const curValueArr = seriesData.map(v=>{
+      if(!v[value])  v[value] = 0
+      return v[value]
+    })
+    arr.push({
+      label,
+      data: curValueArr
+    })
+  });
+  return arr
+}
+// chart配置
+export const barOption =({xAxisData, seriesData})=> {
+  return {...grid,
+    ...legendRender(),
+    ...tooltip,
+    xAxis: [
+      {
+        type: 'category',
+        axisTick: { show: false },
+        data: xAxisData,
+        axisLabel: {
+          rotate: 30
         }
       }
-      return `{a| ${name}\n}{b0| ${target}个   (${number}亿元)}`;
+    ],
+    yAxis: [
+      {
+        type: 'value'
+      }
+    ],
+    series: [
+      barItemRender({name:seriesData[0].label, startColor:'#70CE4B', endColor:'#4DC31F',data: seriesData[0].data}),
+      barItemRender({name:seriesData[1].label, startColor:'#4CAAF9', endColor:'#0B84EA',data: seriesData[1].data}),
+      barItemRender({name:seriesData[2].label, startColor:'#CCCCCC', endColor:'#999999',data: seriesData[2].data}),
+    ]}
+}
+// 饼图
+export const pieOption = (data)=>  {
+  // const arr  = defectGrade.map(v=>{
+  //   if(!data[v.value]) return {value:0, name: v.label};
+  //   return  {value:data[v.value], name: v.label}
+  // }) 
+  return {
+    tooltip: {
+      trigger: 'item'
     },
-  },
-  series: [
-    {
-      type: 'pie',
-      center: ['30%', '50%'],
-      radius: ['50%', '70%'],
-      clockwise: true,
-      avoidLabelOverlap: true,
-      hoverOffset: 2,
-      tooltip: {
-        trigger: 'item',
-        formatter: function (params) {
-          return params.name + '：' + params.value + '个<br>占比：' + params.percent.toFixed(1) + '%';
-        },
-        backgroundColor: '#f3f3f3',
-        textStyle: {
-          color: '#666666',
-          fontSize: 14,
-          fontWeight: 500,
-        },
-        padding: [10, 20],
-        extraCssText: 'box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);',
-      },
-      emphasis: {
+    color:['#00C3FF', '#563AD2', '#DE8536', '#ED5450'],
+    series: [
+      {
+        type: 'pie',
+        data:data,
+        center: ['50%','50%'],
+        radius: ['40%','60%'],
         itemStyle: {
-          borderColor: '#f3f3f3',
-          borderWidth: 5,
+          normal: {
+            label: {
+              show: true,
+              position: 'outside',
+              color:['#00C3FF', '#563AD2', '#DE8536', '#ED5450'],
+              padding: [0, -100, 0, -100],
+              fontSize: 13,
+              formatter: function(params) {
+                if (params.name !== '') {
+                  return '{cir'+ params.dataIndex+'|'  + params.name +' ' +params.percent + '%' +'}\n{cir'+params.dataIndex +'|●}\n{name|' + params.value + ' 件' + '}';
+                } else {
+                  return '';
+                }
+                        
+              },
+              rich: {
+                name: {
+                  fontSize: 16,
+                  align: 'center'
+                },
+                cir0: {
+                  fontSize: 15,
+                  opacity: 1,
+                  color: '#00C3FF',
+                  padding:[0, 92, 0, 92]
+                },
+                cir1: {
+                  fontSize: 15,
+                  opacity: 1,
+                  color: '#563AD2',
+                  padding:[0, 92, 0, 92]
+                },
+                cir2: {
+                  fontSize: 15,
+                  opacity: 1,
+                  color: '#DE8536',
+                  padding:[0, 92, 0, 92]
+                },
+              }
+            },
+            labelLine: {
+              length:27,
+              length2: 30,
+              show: true,
+              color: '#00ffff'
+            }
+          }
         },
-      },
-      //启用鼠标放上去放大效果，这个挺好的
-      itemStyle: {
-        normal: {
-          color: function (params) {
-            return colorList[params.dataIndex];
-          },
-          // shadowBlur: 20,
-          // shadowColor: function (params) {
-          //     return colorListShadow[params.dataIndex];
-          // },
-        },
-      },
-      label: {
-        show: false,
-        position: 'outside',
-        formatter: '{a|{b}：{d}%}\n{hr|}',
-        rich: {
-          hr: {
-            backgroundColor: 't',
-            borderRadius: 1,
-            width: 1,
-            height: 1,
-            padding: [1, 1, 0, -4],
-          },
-          a: {
-            padding: [-15, 7, -10, 7],
-          },
-        },
-      },
-      labelLine: {
-        normal: {
-          length: 10,
-          length2: 15,
-          lineStyle: {
-            width: 1,
-          },
-        },
-      },
-      data: newData,
+        name: '',
+        hoverAnimation: false,
+      }
+    ]
+  }}
+// 横向柱形图
+export const stackBarRender = ({name,data})=>({
+  name,
+  type: 'bar',
+  barWidth:14,
+  label: {
+    show: true,
+    color: '#fff'
+  },
+  showBackground: true,
+  backgroundStyle: {
+    color: '#E8EDF7',
+    barBorderRadius: [0, 30, 30, 0],
+  },
+  data
+})
+// '正常','轻微','预警','严重','十分严重','未识别'
+export const horizontalBarOption= ({axisData, seriesData})=> {
+  // const arr = formatSeriesData(defectGrade, seriesData)
+  return {
+    grid:{
+      bottom:18,
+      top:20
     },
-  ],
-};
+    ...legendRender(),
+    ...tooltip,
+    xAxis: {
+      type: 'value'
+    },
+    yAxis: {
+      type: 'category',
+      data: axisData,
+      hideOverlap: false,
+      axisLabel:{
+        interval:0
+      }
+    },
+    series: [
+      {
+        name: "",
+        type: "bar",
+        barWidth: 12,
+        data: seriesData.map((v,i)=>({
+          value:v,
+          itemStyle:{
+            barBorderRadius: [0, 20, 20, 0],
+            color: colorList[i] //TODO：随着线路增加颜色数组不够
+          }
+        })),
+      },
+      {
+        name: "",
+        type: "bar",
+        barWidth: 12,
+        barGap: "-100%",
+        z: 0,
+        itemStyle: {
+          barBorderRadius: [0, 20, 20, 0],
+          color: "#E8EDF7",
+        },
+        data: seriesData.map(v=>100),
+      },
+    ]
+  }}
+// 线图
+const lineItemRender = ({name,data,lineColor,areaColor})=>({
+  name,
+  type: 'line',
+  data,
+  smooth: true, // 平滑曲线
+  showSymbol: false,
+  itemStyle:{color: lineColor},
+  lineStyle: { width: 3, color: lineColor },
+  areaStyle: { color: linearColor(areaColor, '#fff') },
+})
+export const lineOption = ({axisData, seriesData})=> {
+  // const arr = formatSeriesData(defectGrade, seriesData)
+  return {...grid,
+    ...legendRender(),
+    ...tooltip,
+    xAxis: {
+      type: 'category',
+      boundaryGap: false,
+      data: axisData,
+      axisLine: { lineStyle: { color: '#2C77E3' } },
+      axisTick: { length: 3 },
+      axisLabel: { color: '#555',
+        rotate: 30
+      },
+    },
+    yAxis: {
+      type: 'value',
+      axisLine: { show: false, lineStyle: { color: '#ccc' } },
+      axisLabel: { color: '#555' },
+      splitLine: { show: false },
+    },
+    series: [
+      lineItemRender({name:seriesData[0].label,  data: seriesData[0].data, lineColor:'#70CE4B',areaColor:'rgba(112, 206, 75, 0.2)'}),
+      lineItemRender({ name:seriesData[1].label,  data:seriesData[1].data, lineColor:'#CEC64B',areaColor:'rgba(206, 198, 75, 0.1)'}),
+      // lineItemRender({name:seriesData[2].label,  data: seriesData[2].data, lineColor:'#F5A100',areaColor:'rgba(245, 161, 0, 0.1)'}),
+      // lineItemRender({name:seriesData[3].label,  data: seriesData[3].data , lineColor:'#EB0101',areaColor:'rgba(235, 1, 1, 0.1)'}),
+      // lineItemRender({name:seriesData[4].label,  data: seriesData[4].data, lineColor:'#A90404',areaColor:'rgba(169, 4, 4, 0.1)'}),
+      // lineItemRender({name:seriesData[5].label,  data: seriesData[5].data, lineColor:'#A476F2',areaColor:'rgba(164, 118, 242, 0.1)'})
+    ],
+  }}

@@ -9,3 +9,5 @@
  */
 export * from './modules/user'
 export * from './modules/person'
+
+export * from './mock'

@@ -5,23 +5,24 @@
   "scripts": {
     "serve:dev": "vue-cli-service serve --mode serve-development",
     "serve:prod": "vue-cli-service serve --mode serve-production",
-    "serve:stage": "vue-cli-service serve --mode serve-stage",
-    "serve:test": "vue-cli-service serve --mode serve-test",
     "build:prod": "vue-cli-service build --mode build-prod",
     "build:report": "vue-cli-service build --mode build-report",
     "lint": "eslint --ext .js,.vue src",
     "lint-fix": "eslint --ext .js,.vue src --fix"
   },
   "dependencies": {
+    "@commitlint/cli": "^17.1.2",
+    "@commitlint/config-conventional": "^17.1.0",
     "@common-ui/w-form": "^0.1.21",
     "@common-ui/w-layout": "^0.1.9",
     "axios": "^0.27.2",
     "core-js": "^3.8.3",
     "echarts": "^5.4.0",
-    "element-ui": "^2.15.9",
+    "element-ui": "^2.15.6",
     "lodash-es": "^4.17.21",
     "pinia": "^2.0.14",
     "pinia-plugin-persist": "^1.0.0",
+    "screenfull": "^5.0.0",
     "vue": "^2.6.14",
     "vue-router": "^3.5.4"
   },

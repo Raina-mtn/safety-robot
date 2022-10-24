@@ -1,23 +1,17 @@
-<!--
- * @Date: 2022-09-09 10:09:21
- * @LastEditors: zhusisheng zhusisheng@shenhaoinfo.com
- * @LastEditTime: 2022-09-16 14:24:50
- * @FilePath: \explosive-robot\src\views\statis\statistic\tab1\chart.vue
--->
 <template>
-  <div style="height: calc(100% - 3rem)">
+  <div ref="content" style="height: calc(100% - 3rem);position:relative">
     <div
       ref="charts"
       style="
         width: 100%;
         height: 100%;
         position: relative;
-
-        border: 1px solid #0d3380;
-
-        background: rgba(8, 34, 117, 0.3);
       "
     />
+    <i class="el-icon-full-screen" title="全屏" @click="fullScreen" />
+    <el-dialog :visible.sync="isFullScreen" width="80%">
+      <div ref="chartFull" class="fullScreen" />
+    </el-dialog>
   </div>
 </template>
 <script>
@@ -49,6 +43,7 @@ export default {
   data() {
     return {
       chart: null,
+      isFullScreen: false
     };
   },
   watch: {
@@ -69,8 +64,27 @@ export default {
     initChart() {
       this.chart = echarts.init(this.$refs.charts);
       this.chart.setOption(this.option);
-      this.chart.on("click", (params) => this.$emit("pointSelect", params));
     },
+    fullScreen(){
+      this.isFullScreen = true
+      setTimeout(()=>{
+        const chart = echarts.init(this.$refs.chartFull);
+        chart.setOption(this.option);
+
+      })
+    }
   },
 };
 </script>
+<style lang="scss" scoped>
+.el-icon-full-screen{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+.fullScreen{
+  width: 100%;
+  height: 60vh;
+}
+</style>

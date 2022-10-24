@@ -21,7 +21,6 @@ module.exports = {
     liveReload: true,
     hot: true,
     port: VUE_APP_PROT,
-    open: true,
     compress: true, //代码压缩
     proxy: {
       [`/${VUE_APP_PROXY_KEY}`]: {
