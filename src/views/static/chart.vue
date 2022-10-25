@@ -59,6 +59,10 @@ export default {
   },
   mounted() {
     this.initChart();
+    let self = this
+    window.proxy.addEventListener('resize', function(){
+      self.chart.resize()
+    })
   },
   methods: {
     initChart() {

@@ -18,6 +18,7 @@
 </template>
 <script>
 import { deviceStatus } from "@/utils/config";
+import { getTokenByKey } from "@/utils/token";
 export default {
   props: {
     robot: {
@@ -30,7 +31,8 @@ export default {
   },
   methods: {
     openSystem(){
-      window.open(this.robot.systemUrl)
+      const token = getTokenByKey('token') || 'test'
+      window.open(`${this.robot.systemUrl}?token=${token}`)
     }
   },
 };

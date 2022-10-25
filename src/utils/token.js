@@ -1,4 +1,4 @@
-export const TokenKey = 'shenhao-vuex'
+export const TokenKey = 'sh_smart_trans_user'
 export function getToken() {
   const storage = window.localStorage.getItem(TokenKey)
   return storage && JSON.parse(storage)

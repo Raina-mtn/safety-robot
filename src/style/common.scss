@@ -1,0 +1,51 @@
+// 导航条样式
+// div[data-qiankun="safety-production"]{
+    #app{
+        .sidebar-container{
+          .el-menu-vertical.el-menu{
+            .el-menu-item.is-active,.el-submenu .el-submenu__title:hover,.el-menu-item:hover,.is-active > .el-submenu__title {
+              background: #E5EEFF !important;
+              color: #2C6EE5 !important;
+              position: relative;
+              &::after{
+                position: absolute;
+                content: '';
+                height: 100%;
+                width: 6px;
+                left: 0;
+                background: #2C6EE5;
+              }
+            }
+            .el-submenu{
+              .el-menu {
+                .el-menu-item{
+                  &::after{
+                    position: absolute;
+                    content: '';
+                    width: 8px;
+                    height: 8px;
+                    background: #FFFFFF;
+                    border: 1px solid #DCDFE6;
+                    left: 18px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    border-radius: 50%;
+                  }
+                  &.is-active,&:hover{
+                    color:#2C6EE5 !important ;
+                    background-color: transparent !important;
+                    &::after{
+                      background: #3377FF;
+                      border-color: #3377FF;
+                    }
+                  }
+                }
+              }
+            }
+          }
+          .sub-el-icon{
+            font-size: 18px;
+          }
+        }
+      }
+      // }

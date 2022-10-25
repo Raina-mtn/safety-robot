@@ -1,4 +1,33 @@
 const colorList = ['#70CE4B','#CEC64B','#F5A100','#EB0101','#A90404','#A476F2']
+const randomColor = require('randomcolor');
+const hexToRgb = function(val) {   //HEX十六进制颜色值转换为RGB(A)颜色值
+  // 16进制颜色值的正则
+  var reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/;
+  // 把颜色值变成小写
+  var color = val.toLowerCase();
+  var result = '';
+  if (reg.test(color)) {
+    // 如果只有三位的值，需变成六位，如：#fff => #ffffff
+    if (color.length === 4) {
+      var colorNew = "#";
+      for (let i = 1; i < 4; i += 1) {
+        colorNew += color.slice(i, i + 1).concat(color.slice(i, i + 1));
+      }
+      color = colorNew;
+    }
+    // 处理六位的颜色值，转为RGB
+    var colorChange = [];
+    for (let i = 1; i < 7; i += 2) {
+      colorChange.push(parseInt("0x" + color.slice(i, i + 2)));
+    }
+    result = "rgb(" + colorChange.join(",") + ")";
+    return { rgb: result, r: colorChange[0], g: colorChange[1], b: colorChange[2] };
+  } else {
+    result = '无效';
+    return { rgb: result };
+  }
+
+}
 // echart组件
 const linearColor = (startColor,endColor)=>({
   type: 'linear',
@@ -80,11 +109,10 @@ export const barOption =({xAxisData, seriesData})=> {
         type: 'value'
       }
     ],
-    series: [
-      barItemRender({name:seriesData[0].label, startColor:'#70CE4B', endColor:'#4DC31F',data: seriesData[0].data}),
-      barItemRender({name:seriesData[1].label, startColor:'#4CAAF9', endColor:'#0B84EA',data: seriesData[1].data}),
-      barItemRender({name:seriesData[2].label, startColor:'#CCCCCC', endColor:'#999999',data: seriesData[2].data}),
-    ]}
+    series: seriesData.map(v=>{
+      return barItemRender({name:v.label, startColor:randomColor({luminosity: 'light'}), endColor:randomColor({luminosity: 'light'}),data: v.data})
+    })
+  }
 }
 // 饼图
 export const pieOption = (data)=>  {
@@ -203,7 +231,7 @@ export const horizontalBarOption= ({axisData, seriesData})=> {
           value:v,
           itemStyle:{
             barBorderRadius: [0, 20, 20, 0],
-            color: colorList[i] //TODO：随着线路增加颜色数组不够
+            color: colorList[i]? colorList[i] : randomColor() //TODO：随着线路增加颜色数组不够
           }
         })),
       },
@@ -213,6 +241,9 @@ export const horizontalBarOption= ({axisData, seriesData})=> {
         barWidth: 12,
         barGap: "-100%",
         z: 0,
+        tooltip:{
+          show: false
+        },
         itemStyle: {
           barBorderRadius: [0, 20, 20, 0],
           color: "#E8EDF7",
@@ -253,12 +284,11 @@ export const lineOption = ({axisData, seriesData})=> {
       axisLabel: { color: '#555' },
       splitLine: { show: false },
     },
-    series: [
-      lineItemRender({name:seriesData[0].label,  data: seriesData[0].data, lineColor:'#70CE4B',areaColor:'rgba(112, 206, 75, 0.2)'}),
-      lineItemRender({ name:seriesData[1].label,  data:seriesData[1].data, lineColor:'#CEC64B',areaColor:'rgba(206, 198, 75, 0.1)'}),
-      // lineItemRender({name:seriesData[2].label,  data: seriesData[2].data, lineColor:'#F5A100',areaColor:'rgba(245, 161, 0, 0.1)'}),
-      // lineItemRender({name:seriesData[3].label,  data: seriesData[3].data , lineColor:'#EB0101',areaColor:'rgba(235, 1, 1, 0.1)'}),
-      // lineItemRender({name:seriesData[4].label,  data: seriesData[4].data, lineColor:'#A90404',areaColor:'rgba(169, 4, 4, 0.1)'}),
-      // lineItemRender({name:seriesData[5].label,  data: seriesData[5].data, lineColor:'#A476F2',areaColor:'rgba(164, 118, 242, 0.1)'})
-    ],
+    series:seriesData.map(((v,i)=>{
+      const colorRgb = colorList[i] ? hexToRgb(colorList[i]) : hexToRgb(randomColor())
+      return lineItemRender({
+        name:v.label,  
+        data: v.data, 
+        lineColor:(colorList[i] || randomColor()),areaColor:`rgba(${colorRgb.r},${colorRgb.g},${colorRgb.b},0.1)`})
+    }))
   }}

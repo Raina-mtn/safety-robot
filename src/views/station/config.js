@@ -22,32 +22,32 @@ const robotList = [{
   value:'c'
 }]
 export const formColums = [{
-    label: '场站',
-    prop: 'station',
-    el: 'select',
-    placeholder: '请选择',
-    clearable: true,
-    span: 4,
-    filterable:true,
-    options:station
-  },{
-    label: '机器人',
-    prop: 'robot',
-    el: 'select',
-    placeholder: '请选择',
-    clearable: true,
-    span: 4,
-    options:robotList
-  },{
-    label: 'IP',
-    prop: 'ip',
-    el: 'input',
-    placeholder: '请输入',
-    clearable: true,
-    span: 4,
-  },{
-    prop: 'btns',
-    span: 4,
+  label: '场站',
+  prop: 'station',
+  el: 'select',
+  placeholder: '请选择',
+  clearable: true,
+  span: 4,
+  filterable:true,
+  options:station
+},{
+  label: '机器人',
+  prop: 'robot',
+  el: 'select',
+  placeholder: '请选择',
+  clearable: true,
+  span: 4,
+  options:robotList
+},{
+  label: 'IP',
+  prop: 'ip',
+  el: 'input',
+  placeholder: '请输入',
+  clearable: true,
+  span: 4,
+},{
+  prop: 'btns',
+  span: 4,
 }]
 export const  tableColums = (that)=>{
   return [
