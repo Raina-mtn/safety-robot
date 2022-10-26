@@ -7,13 +7,9 @@
     @click="openSystem"
   >
     <div class="name-top">
-      <span class="name">{{ robot.title }}</span>
+      <span class="name"><i class="status" />{{ robot.title }}</span>
     </div>
     <img :src="robot.profile? robot.profile: require('@/assets/robot_real.png')">
-    <i :class="['tri','tri-t-l']" />
-    <i :class="['tri','tri-t-r']" />
-    <i :class="['tri','tri-b-l']" />
-    <i :class="['tri','tri-b-r']" />
   </div>
 </template>
 <script>
@@ -42,9 +38,7 @@ export default {
   position: relative;
   width: 250px;
   height: 300px;
-  
-  background: #001559;
-  border: 1px #D3DEDE solid;
+background: #E5EEFF;
   border-radius: 5px;
   overflow: hidden;
   margin-right: 3rem;
@@ -60,7 +54,7 @@ export default {
     .name {
       font-size: 16px;
       font-weight: 500;
-      color: #1cdafc;
+      color: #3377FF;
       text-align: center;
     }
   }
@@ -92,36 +86,10 @@ export default {
   }
   &.outline {
     .status {
-      color: #888;
+      color: #3377FF;
       &::after {
-        background: #888;
+        background: #3377FF;
       }
-    }
-  }
-  .tri{
-    display: block;
-    width: 18px;
-    height: 18px;
-    background: url('~@/assets/tri.png') no-repeat;
-    position: absolute;
-    &.tri-t-l{
-      top: -1px;
-      left: -1px;
-    }
-    &.tri-t-r{
-      top: -1px;
-      right: -1px;
-      transform: rotate(90deg);
-    }
-    &.tri-b-l{
-      bottom: -1px;
-      left: -1px;
-      transform:rotate(270deg);
-    }
-    &.tri-b-r{
-      bottom: -1px;
-      right: -1px;
-      transform: rotate(180deg);
     }
   }
 }

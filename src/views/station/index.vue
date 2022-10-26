@@ -1,6 +1,6 @@
 <template>
-  <PageLayout class="app-container">
-    <div slot="content" class="pending-tabs">
+  <PageLayout>
+    <div slot="content">
       <robotTab :active-name="activeName" />
     </div>
   </PageLayout>

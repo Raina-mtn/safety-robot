@@ -27,19 +27,19 @@ export const asyncRoutes = [
     path: '/static',
     code: 'Static',
     component: () => import('@/views/static/index.vue'),
-    meta: { title: '统计分析', icon: 'icon-shouye-shouye' },
+    meta: { title: '统计分析', icon: 'icon-tongji' },
   },
   {
     path: '/robotInfo',
     code: 'RobotInfo',
     component: () => import('@/views/robot/index.vue'),
-    meta: { title: '机器人信息', icon: 'icon-shouye-shouye' },
+    meta: { title: '机器人信息', icon: 'icon-jiqiren' },
   },
   {
     path: '/station',
     code: 'Station',
     component: () => import('@/views/station/index.vue'),
-    meta: { title: '场站配置', icon: 'icon-shouye-shouye' },
+    meta: { title: '场站配置', icon: 'icon-peizhi' },
   },
 ];
 

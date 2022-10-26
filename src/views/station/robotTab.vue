@@ -6,10 +6,14 @@
       :columns="formColums"
       size="mini"
     >
-    <div slot="btns">
-        <el-button type="primary">查询</el-button>
-        <el-button type="primary" @click="add">新增</el-button>
-    </div>
+      <div slot="btns">
+        <el-button type="primary">
+          查询
+        </el-button>
+        <el-button type="primary" @click="add">
+          新增
+        </el-button>
+      </div>
     </WForm>
     <WTable
       ref="mtable" 
@@ -20,7 +24,7 @@
       :size="'mini'" 
       :header-cell-style="{background:'#eee'}"
     />
-    <addDialog ref="addDialog"></addDialog>
+    <addDialog ref="addDialog" />
   </div>
 </template>
 

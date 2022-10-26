@@ -67,9 +67,9 @@ export const  tableColums = (that)=>{
       label: '操作',
       render(h,{row}) {
         return [
-          <el-link type="primary" underline={false} onClick={() => {that.$refs.addDialog.openDialog('edit',row)}}><i class="el-icon-edit"></i></el-link>,
+          <el-link type="primary" underline={false} onClick={() => {that.$refs.addDialog.openDialog('edit',row)}}><i class="el-icon-edit">编辑</i></el-link>,
           <el-divider direction="vertical"></el-divider>,
-          <el-link type="primary" underline={false} onClick={() => {}}><i class="el-icon-delete"></i></el-link>,
+          <el-link type="primary" underline={false} onClick={() => {}}><i class="el-icon-delete">删除</i></el-link>,
         ]
       },
     },
