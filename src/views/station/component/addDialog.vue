@@ -11,13 +11,12 @@
       :form-data="formData"
       :columns="dialogColums"
       size="mini"
-      >
-    </WForm>
+    />
     <div slot="footer" class="btn-grops">
       <el-button icon="el-icon-circle-close" @click="closeDialog">
         取 消
       </el-button>
-      <el-button icon="el-icon-circle-check" type="primary">
+      <el-button icon="el-icon-circle-check" type="primary" @click="submit">
         确 定
       </el-button>
     </div>
@@ -26,6 +25,7 @@
 <script>
 import { WForm } from '@common-ui/w-form';
 import {dialogColums} from '../config'
+import {apiCreateStation} from '@/api/interface'
 export default {
   components:{
     WForm
@@ -54,6 +54,14 @@ export default {
       this.title = ''
       this.isShow = false;
     },
+    submit(){
+      const params = {
+        ...this.formData
+      }
+      apiCreateStation(params).then(()=>{
+        this.closeDialog()
+      })
+    }
 
   },
 }

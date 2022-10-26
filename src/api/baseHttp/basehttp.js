@@ -16,9 +16,10 @@ export default class BaseHttp {
   create(options={}){
     let loading
     const { headers = {}, timeout = 45000, interceptors = {}, ...option } = options
+    // const baseURL = window.location.href.split('/')[0]
     // axios实例
     this._http = axios.create({
-      baseURL: VUE_APP_PROXY_KEY,
+      baseURL:VUE_APP_PROXY_KEY,
       headers: {'Content-Type': 'application/json', ...headers},
       timeout, 
       ...option

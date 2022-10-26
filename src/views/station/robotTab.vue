@@ -32,6 +32,7 @@
 import { WForm,WTable } from '@common-ui/w-form';
 import {formColums,tableColums} from './config' 
 import addDialog from './component/addDialog.vue'
+import {apiGetStationList} from '@/api/interface'
 export default {
   components:{
     WForm,
@@ -46,32 +47,27 @@ export default {
   },
   data() {
     return {
-      formData:{},
+      formData:{
+        pageIndex:1,
+        pageSize:10
+      },
       formColums,
-      tableData:[{
-        station:'A场站',
-        robot:'防爆机器人',
-        ip:'172.19.3.23:8020'
-      },{
-        station:'A场站',
-        robot:'线路巡检机器人',
-        ip:'172.19.3.23:8020'
-      },{
-        station:'B场站',
-        robot:'防爆机器人',
-        ip:'172.19.3.23:8020'
-      },{
-        station:'B场站',
-        robot:'360机器人',
-        ip:'172.19.3.23:8020'
-      },],
+      tableData:[],
       total:4,
       tableColums:tableColums(this),
     }
   },
+  mounted(){
+    this.getList()
+  },
   methods: {
     add(){
       this.$refs.addDialog.openDialog('add')
+    },
+    getList(){
+      apiGetStationList(this.formData).then(res=>{
+        this.tableData = res.data
+      })
     }
   },
 }
